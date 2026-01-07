@@ -7,7 +7,6 @@ cv:
       username: gojnimer
   headline: Desenvolvedor Frontend Sênior
   summary: Desenvolvedor front-end sênior com experiência sólida em aplicações web escaláveis. Tenho mais de 7 anos de experiência em desenvolvimento front-end. Crio aplicações web e mobile robustas e de alta performance, dominando frameworks modernos — React, Next.js, Remix, Astro, Angular, Node.js e TypeScript — e arquitetura de Micro Frontends (MFE). Tenho histórico de liderar iniciativas de padronização e otimização de performance em projetos críticos, sempre buscando utilizar as tecnologias mais atuais. Possuo experiência em setores altamente regulados, como saúde e finanças, integrando sistemas complexos e garantindo segurança e usabilidade.
-
   sections:
     experience:
       - company: Hospital Israelita Albert Einstein
@@ -71,18 +70,10 @@ cv:
         details: React Native, Xamarin Forms
       - label: Backend
         details: C#, .NET Core
-
 design:
-  theme: classic
-  colors:
-    name: rgb(0, 79, 144)
-    connections: rgb(0, 79, 144)
-    section_titles: rgb(0, 79, 144)
-    links: rgb(0, 79, 144)
+  theme: moderncv
 locale:
   language: portuguese
-  present: presente
-  month_abbreviations:
     - jan
     - fev
     - mar
