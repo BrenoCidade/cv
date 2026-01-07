@@ -44,6 +44,11 @@ jobs:
           name: ${{ needs.build.outputs.artifact-name }}
           path: ./artifacts
 
+      - name: Checkout repository for README update
+        uses: actions/checkout@v4
+        with:
+          path: repo
+
       - name: Prepare deployment directory
         env:
           EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
@@ -61,6 +66,32 @@ jobs:
           cp "artifacts/${EN_PDF}" public/
           cp "artifacts/${PT_PDF}" public/
 
+      - name: Generate README.md
+        env:
+          EN_HTML: ${{ needs.build.outputs.en-html-name }}
+          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
+          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
+          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
+        run: |
+          # Get GitHub Pages URL
+          OWNER=$(echo "${{ github.repository }}" | cut -d'/' -f1)
+          REPO=$(echo "${{ github.repository }}" | cut -d'/' -f2)
+          PAGES_URL="https://${OWNER}.github.io/${REPO}"
+
+          # Generate README
+          cat > repo/README.md << EOF
+          # Curriculum Vitae
+
+          | Language | Preview (HTML) | PDF |
+          |----------|----------------|------|
+          | 🇺🇸 English | [Preview](${PAGES_URL}/${EN_HTML}) | [Download](${PAGES_URL}/${EN_PDF}) |
+          | 🇧🇷 Portuguese | [Preview](${PAGES_URL}/${PT_HTML}) | [Download](${PAGES_URL}/${PT_PDF}) |
+
+          ---
+
+          *Built with [RenderCV](https://rendercv.com)*
+          EOF
+
       - name: Create index.html
         env:
           EN_HTML: ${{ needs.build.outputs.en-html-name }}
@@ -70,114 +101,102 @@ jobs:
         run: |
           cat > public/index.html << 'EOF'
           <!DOCTYPE html>
-          <html lang="en" class="scroll-smooth">
+          <html lang="en">
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>CV - Professional Resume</title>
-              <meta name="description" content="Professional CV available in multiple formats and languages">
-              <script src="https://cdn.tailwindcss.com"></script>
+              <title>Curriculum Vitae</title>
+              <style>
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                      max-width: 800px;
+                      margin: 50px auto;
+                      padding: 20px;
+                      line-height: 1.6;
+                      color: #333;
+                  }
+                  h1 {
+                      border-bottom: 2px solid #333;
+                      padding-bottom: 10px;
+                  }
+                  table {
+                      width: 100%;
+                      border-collapse: collapse;
+                      margin: 30px 0;
+                  }
+                  th, td {
+                      padding: 12px;
+                      text-align: left;
+                      border-bottom: 1px solid #ddd;
+                  }
+                  th {
+                      background-color: #f5f5f5;
+                      font-weight: 600;
+                  }
+                  a {
+                      color: #0066cc;
+                      text-decoration: none;
+                  }
+                  a:hover {
+                      text-decoration: underline;
+                  }
+                  .footer {
+                      margin-top: 50px;
+                      padding-top: 20px;
+                      border-top: 1px solid #ddd;
+                      color: #666;
+                      font-size: 0.9em;
+                  }
+              </style>
           </head>
-          <body class="bg-gray-50 min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
-              <div class="max-w-4xl w-full">
-                  <!-- Header -->
-                  <div class="text-center mb-8">
-                      <h1 class="text-4xl font-bold text-gray-900 mb-2">Curriculum Vitae</h1>
-                      <p class="text-gray-600">Select your preferred format and language</p>
-                  </div>
-
-                  <!-- CV Cards Grid -->
-                  <div class="grid md:grid-cols-2 gap-6">
+          <body>
+              <h1>Curriculum Vitae</h1>
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Language</th>
+                          <th>Preview (HTML)</th>
+                          <th>PDF</th>
+                      </tr>
+                  </thead>
+                  <tbody>
           EOF
 
-          # English Section
           cat >> public/index.html << EOF
-                      <!-- English CV -->
-                      <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 border border-gray-200">
-                          <div class="flex items-center mb-4">
-                              <span class="text-3xl mr-3">🇺🇸</span>
-                              <h2 class="text-2xl font-semibold text-gray-900">English</h2>
-                          </div>
-                          <div class="space-y-3">
-                              <a href="${EN_HTML}"
-                                 class="flex items-center justify-between w-full px-4 py-3 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 group">
-                                  <div class="flex items-center">
-                                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                      </svg>
-                                      <span class="font-medium">View HTML</span>
-                                  </div>
-                                  <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                  </svg>
-                              </a>
-                              <a href="${EN_PDF}"
-                                 class="flex items-center justify-between w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg transition-colors duration-200 group">
-                                  <div class="flex items-center">
-                                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                      </svg>
-                                      <span class="font-medium">Download PDF</span>
-                                  </div>
-                                  <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                  </svg>
-                              </a>
-                          </div>
-                      </div>
+                      <tr>
+                          <td>🇺🇸 English</td>
+                          <td><a href="${EN_HTML}">Preview</a></td>
+                          <td><a href="${EN_PDF}">Download</a></td>
+                      </tr>
+                      <tr>
+                          <td>🇧🇷 Portuguese</td>
+                          <td><a href="${PT_HTML}">Preview</a></td>
+                          <td><a href="${PT_PDF}">Download</a></td>
+                      </tr>
           EOF
 
-          # Portuguese Section
-          cat >> public/index.html << EOF
-                      <!-- Portuguese CV -->
-                      <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-6 border border-gray-200">
-                          <div class="flex items-center mb-4">
-                              <span class="text-3xl mr-3">🇧🇷</span>
-                              <h2 class="text-2xl font-semibold text-gray-900">Português</h2>
-                          </div>
-                          <div class="space-y-3">
-                              <a href="${PT_HTML}"
-                                 class="flex items-center justify-between w-full px-4 py-3 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors duration-200 group">
-                                  <div class="flex items-center">
-                                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                      </svg>
-                                      <span class="font-medium">Ver HTML</span>
-                                  </div>
-                                  <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                  </svg>
-                              </a>
-                              <a href="${PT_PDF}"
-                                 class="flex items-center justify-between w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 text-gray-700 rounded-lg transition-colors duration-200 group">
-                                  <div class="flex items-center">
-                                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                                      </svg>
-                                      <span class="font-medium">Baixar PDF</span>
-                                  </div>
-                                  <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                  </svg>
-                              </a>
-                          </div>
-                      </div>
-          EOF
-
-          # Footer
           cat >> public/index.html << 'EOF'
-                  </div>
-
-                  <!-- Footer -->
-                  <div class="mt-8 text-center">
-                      <p class="text-sm text-gray-500">
-                          Built with <a href="https://rendercv.com" target="_blank" rel="noopener" class="text-blue-600 hover:text-blue-700 underline">RenderCV</a>
-                      </p>
-                  </div>
+                  </tbody>
+              </table>
+              <div class="footer">
+                  <em>Built with <a href="https://rendercv.com" target="_blank" rel="noopener">RenderCV</a></em>
               </div>
           </body>
           </html>
           EOF
+
+      - name: Commit updated README
+        run: |
+          cd repo
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          if git diff --staged --quiet; then
+            echo "No changes to README.md"
+          else
+            git commit -m "docs: Update CV links in README [skip ci]"
+            git push
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
