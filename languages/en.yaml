@@ -1,0 +1,80 @@
+cv:
+  name: John Doe
+  location: São Paulo, Brazil
+  email: john.doe@example.com
+  phone: "+55 11 99999-9999"
+  website: https://johndoe.com
+  social_networks:
+    - network: LinkedIn
+      username: johndoe
+    - network: GitHub
+      username: johndoe
+  headline: Software Engineer
+  summary: Experienced software engineer with 5+ years of expertise in full-stack development. Passionate about building scalable applications and solving complex technical challenges.
+
+  sections:
+    experience:
+      - company: Tech Company Inc.
+        position: Senior Software Engineer
+        location: São Paulo, Brazil
+        start_date: 2021-03
+        end_date: present
+        highlights:
+          - Led development of microservices architecture serving 1M+ users
+          - Reduced API response time by 40% through optimization and caching strategies
+          - Mentored 5 junior developers and conducted code reviews
+
+      - company: StartUp Solutions
+        position: Full Stack Developer
+        location: São Paulo, Brazil
+        start_date: 2019-01
+        end_date: 2021-02
+        highlights:
+          - Developed RESTful APIs using Node.js and Express
+          - Built responsive front-end applications with React and TypeScript
+          - Implemented CI/CD pipelines reducing deployment time by 60%
+
+    education:
+      - institution: University of São Paulo
+        area: Computer Science
+        degree: Bachelor's Degree
+        start_date: 2015-01
+        end_date: 2018-12
+        highlights:
+          - "GPA: 3.8/4.0"
+          - "Relevant coursework: Data Structures, Algorithms, Database Systems"
+
+    skills:
+      - label: Programming Languages
+        details: JavaScript, TypeScript, Python, Go, Java
+      - label: Frameworks & Libraries
+        details: React, Node.js, Express, FastAPI, Spring Boot
+      - label: Databases
+        details: PostgreSQL, MongoDB, Redis
+      - label: DevOps & Tools
+        details: Docker, Kubernetes, GitHub Actions, AWS, Git
+      - label: Languages
+        details: Portuguese (Native), English (Fluent), Spanish (Intermediate)
+
+    projects:
+      - name: Open Source Contribution - React Native Library
+        date: 2023
+        highlights:
+          - Contributed features and bug fixes to popular React Native UI library
+          - Improved documentation and added TypeScript definitions
+
+      - name: Personal Portfolio & Blog
+        date: 2022
+        highlights:
+          - Built with Next.js and deployed on Vercel
+          - Integrated with headless CMS for content management
+
+design:
+  theme: classic
+  colors:
+    name: rgb(0, 79, 144)
+    connections: rgb(0, 79, 144)
+    section_titles: rgb(0, 79, 144)
+    links: rgb(0, 79, 144)
+locale:
+  language: english

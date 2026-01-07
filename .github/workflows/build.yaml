@@ -1,0 +1,153 @@
+name: Build CVs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'languages/**'
+      - '.github/workflows/build.yaml'
+  pull_request:
+    paths:
+      - 'languages/**'
+      - '.github/workflows/build.yaml'
+  workflow_call:
+    outputs:
+      artifact-name:
+        description: "Name of the uploaded artifact"
+        value: ${{ jobs.build.outputs.artifact-name }}
+      en-pdf-name:
+        description: "Filename of the English CV PDF"
+        value: John_Doe_CV.pdf
+      pt-pdf-name:
+        description: "Filename of the Portuguese CV PDF"
+        value: João_Silva_CV.pdf
+      en-html-name:
+        description: "Filename of the English CV HTML"
+        value: John_Doe_CV.html
+      pt-html-name:
+        description: "Filename of the Portuguese CV HTML"
+        value: João_Silva_CV.html
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-name: cv-build-${{ github.run_number }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install RenderCV
+        run: pip install "rendercv[full]"
+
+      - name: Create artifacts directory
+        run: mkdir -p artifacts
+
+      - name: Build English CV
+        run: |
+          cd languages
+          rendercv render en.yaml
+
+      - name: Build Portuguese CV
+        run: |
+          cd languages
+          rendercv render pt.yaml
+
+      - name: Copy build artifacts
+        run: |
+          # Copy PDFs
+          cp languages/rendercv_output/John_Doe_CV.pdf artifacts/
+          cp languages/rendercv_output/João_Silva_CV.pdf artifacts/
+
+          # Copy HTML files
+          cp languages/rendercv_output/John_Doe_CV.html artifacts/
+          cp languages/rendercv_output/João_Silva_CV.html artifacts/
+
+      - name: Generate metadata
+        run: |
+          cat > artifacts/metadata.json << EOF
+          {
+            "build_time": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+            "commit_sha": "${{ github.sha }}",
+            "commit_short": "${GITHUB_SHA:0:7}",
+            "commit_message": $(echo '${{ github.event.head_commit.message }}' | jq -Rs .),
+            "ref": "${{ github.ref }}",
+            "ref_name": "${{ github.ref_name }}",
+            "actor": "${{ github.actor }}",
+            "run_id": "${{ github.run_id }}",
+            "run_number": "${{ github.run_number }}"
+          }
+          EOF
+
+      - name: Verify artifacts exist
+        run: |
+          echo "Checking for required artifacts..."
+
+          if [ ! -f artifacts/John_Doe_CV.pdf ]; then
+            echo "❌ Error: English CV PDF not found"
+            exit 1
+          fi
+
+          if [ ! -f artifacts/João_Silva_CV.pdf ]; then
+            echo "❌ Error: Portuguese CV PDF not found"
+            exit 1
+          fi
+
+          if [ ! -f artifacts/John_Doe_CV.html ]; then
+            echo "❌ Error: English CV HTML not found"
+            exit 1
+          fi
+
+          if [ ! -f artifacts/João_Silva_CV.html ]; then
+            echo "❌ Error: Portuguese CV HTML not found"
+            exit 1
+          fi
+
+          echo "✅ All required artifacts present"
+          echo ""
+          echo "Generated files:"
+          ls -lh artifacts/
+
+      - name: Upload CV artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-build-${{ github.run_number }}
+          path: artifacts/
+          retention-days: 90
+          if-no-files-found: error
+          compression-level: 9
+
+      - name: Build summary
+        run: |
+          echo "## 🔨 Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Successfully built CV PDFs and HTML files" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📄 Files Generated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| File | Size | Type |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| \`John_Doe_CV.pdf\` | $(du -h artifacts/John_Doe_CV.pdf | cut -f1) | PDF |" >> $GITHUB_STEP_SUMMARY
+          echo "| \`João_Silva_CV.pdf\` | $(du -h artifacts/João_Silva_CV.pdf | cut -f1) | PDF |" >> $GITHUB_STEP_SUMMARY
+          echo "| \`John_Doe_CV.html\` | $(du -h artifacts/John_Doe_CV.html | cut -f1) | HTML |" >> $GITHUB_STEP_SUMMARY
+          echo "| \`João_Silva_CV.html\` | $(du -h artifacts/João_Silva_CV.html | cut -f1) | HTML |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📦 Artifact" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Name:** \`cv-build-${{ github.run_number }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Retention:** 90 days" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📊 Metadata" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** \`${GITHUB_SHA:0:7}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Triggered by:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Build time:** $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,94 @@
+cv:
+  name: João Silva
+  location: São Paulo, Brasil
+  email: joao.silva@exemplo.com
+  phone: "+55 11 99999-9999"
+  website: https://joaosilva.com
+  social_networks:
+    - network: LinkedIn
+      username: joaosilva
+    - network: GitHub
+      username: joaosilva
+  headline: Engenheiro de Software
+  summary: Engenheiro de software experiente com mais de 5 anos de expertise em desenvolvimento full-stack. Apaixonado por construir aplicações escaláveis e resolver desafios técnicos complexos.
+
+  sections:
+    experience:
+      - company: Tech Company Inc.
+        position: Engenheiro de Software Sênior
+        location: São Paulo, Brasil
+        start_date: 2021-03
+        end_date: present
+        highlights:
+          - Liderou desenvolvimento de arquitetura de microserviços atendendo mais de 1M de usuários
+          - Reduziu tempo de resposta de APIs em 40% através de otimizações e estratégias de cache
+          - Mentorou 5 desenvolvedores júnior e conduziu revisões de código
+
+      - company: StartUp Solutions
+        position: Desenvolvedor Full Stack
+        location: São Paulo, Brasil
+        start_date: 2019-01
+        end_date: 2021-02
+        highlights:
+          - Desenvolveu APIs RESTful usando Node.js e Express
+          - Construiu aplicações front-end responsivas com React e TypeScript
+          - Implementou pipelines de CI/CD reduzindo tempo de deploy em 60%
+
+    education:
+      - institution: Universidade de São Paulo
+        area: Ciência da Computação
+        degree: Bacharelado
+        start_date: 2015-01
+        end_date: 2018-12
+        highlights:
+          - "Média: 3.8/4.0"
+          - "Disciplinas relevantes: Estruturas de Dados, Algoritmos, Sistemas de Banco de Dados"
+
+    skills:
+      - label: Linguagens de Programação
+        details: JavaScript, TypeScript, Python, Go, Java
+      - label: Frameworks e Bibliotecas
+        details: React, Node.js, Express, FastAPI, Spring Boot
+      - label: Bancos de Dados
+        details: PostgreSQL, MongoDB, Redis
+      - label: DevOps e Ferramentas
+        details: Docker, Kubernetes, GitHub Actions, AWS, Git
+      - label: Idiomas
+        details: Português (Nativo), Inglês (Fluente), Espanhol (Intermediário)
+
+    projects:
+      - name: Contribuição Open Source - Biblioteca React Native
+        date: 2023
+        highlights:
+          - Contribuiu com funcionalidades e correções de bugs para biblioteca popular de UI React Native
+          - Melhorou documentação e adicionou definições TypeScript
+
+      - name: Portfólio Pessoal e Blog
+        date: 2022
+        highlights:
+          - Construído com Next.js e hospedado no Vercel
+          - Integrado com CMS headless para gerenciamento de conteúdo
+
+design:
+  theme: classic
+  colors:
+    name: rgb(0, 79, 144)
+    connections: rgb(0, 79, 144)
+    section_titles: rgb(0, 79, 144)
+    links: rgb(0, 79, 144)
+locale:
+  language: portuguese
+  present: presente
+  month_abbreviations:
+    - jan
+    - fev
+    - mar
+    - abr
+    - maio
+    - jun
+    - jul
+    - ago
+    - set
+    - out
+    - nov
+    - dez

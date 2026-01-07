@@ -1,0 +1,313 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'languages/**'
+      - '.github/workflows/build.yaml'
+      - '.github/workflows/deploy-pages.yaml'
+  workflow_dispatch:
+  workflow_call:
+    outputs:
+      pages_url:
+        description: "GitHub Pages URL where CVs are deployed"
+        value: ${{ jobs.deploy.outputs.page_url }}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact-name }}
+          path: ./artifacts
+
+      - name: Prepare deployment directory
+        env:
+          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
+          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
+          EN_HTML: ${{ needs.build.outputs.en-html-name }}
+          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
+        run: |
+          mkdir -p public
+
+          # Copy RenderCV-generated HTML files
+          cp "artifacts/${EN_HTML}" public/
+          cp "artifacts/${PT_HTML}" public/
+
+          # Copy PDF files
+          cp "artifacts/${EN_PDF}" public/
+          cp "artifacts/${PT_PDF}" public/
+
+      - name: Create index.html
+        env:
+          EN_HTML: ${{ needs.build.outputs.en-html-name }}
+          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
+          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
+          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
+        run: |
+          cat > public/index.html << 'INDEXEOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>CV - Select Language</title>
+              <meta name="description" content="Professional CV available in English and Portuguese">
+              <style>
+                  * {
+                      margin: 0;
+                      padding: 0;
+                      box-sizing: border-box;
+                  }
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      min-height: 100vh;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      padding: 20px;
+                  }
+                  .container {
+                      background: white;
+                      padding: 3rem;
+                      border-radius: 20px;
+                      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                      max-width: 600px;
+                      width: 100%;
+                      text-align: center;
+                  }
+                  h1 {
+                      color: #333;
+                      margin-bottom: 1rem;
+                      font-size: 2rem;
+                  }
+                  p {
+                      color: #666;
+                      margin-bottom: 2rem;
+                      font-size: 1.1rem;
+                  }
+                  .language-section {
+                      margin-bottom: 2rem;
+                      padding-bottom: 2rem;
+                      border-bottom: 1px solid #e0e0e0;
+                  }
+                  .language-section:last-of-type {
+                      border-bottom: none;
+                      margin-bottom: 0;
+                      padding-bottom: 0;
+                  }
+                  .language-title {
+                      font-size: 1.5rem;
+                      margin-bottom: 1rem;
+                      color: #667eea;
+                  }
+                  .button-group {
+                      display: flex;
+                      gap: 1rem;
+                      justify-content: center;
+                      flex-wrap: wrap;
+                  }
+                  .btn {
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      gap: 0.5rem;
+                      padding: 0.75rem 1.5rem;
+                      font-size: 1rem;
+                      font-weight: 600;
+                      text-decoration: none;
+                      color: white;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      border-radius: 8px;
+                      transition: all 0.3s ease;
+                      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+                  }
+                  .btn:hover {
+                      transform: translateY(-2px);
+                      box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+                  }
+                  .btn:active {
+                      transform: translateY(0);
+                  }
+                  .btn-secondary {
+                      background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+                      box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+                  }
+                  .btn-secondary:hover {
+                      box-shadow: 0 6px 25px rgba(108, 117, 125, 0.6);
+                  }
+                  .flag {
+                      font-size: 1.2rem;
+                  }
+                  .footer {
+                      margin-top: 2rem;
+                      padding-top: 1.5rem;
+                      border-top: 1px solid #e0e0e0;
+                      color: #999;
+                      font-size: 0.85rem;
+                  }
+                  .footer a {
+                      color: #667eea;
+                      text-decoration: none;
+                  }
+                  .footer a:hover {
+                      text-decoration: underline;
+                  }
+                  @media (max-width: 480px) {
+                      .container {
+                          padding: 2rem;
+                      }
+                      h1 {
+                          font-size: 1.5rem;
+                      }
+                      p {
+                          font-size: 1rem;
+                      }
+                      .button-group {
+                          flex-direction: column;
+                      }
+                  }
+              </style>
+              <script>
+                  // Query parameter routing
+                  window.addEventListener('DOMContentLoaded', () => {
+                      const urlParams = new URLSearchParams(window.location.search);
+                      const langParam = urlParams.get('lang');
+                      const formatParam = urlParams.get('format') || 'html';
+
+                      if (langParam) {
+                          const fileMap = {
+                              'en': {
+                                  'html': 'INDEXEOF
+          echo "                                  'html': '${EN_HTML}'," >> public/index.html
+          cat >> public/index.html << 'INDEXEOF'
+                                  'pdf': 'INDEXEOF
+          echo "                                  'pdf': '${EN_PDF}'" >> public/index.html
+          cat >> public/index.html << 'INDEXEOF'
+                              },
+                              'pt': {
+                                  'html': 'INDEXEOF
+          echo "                                  'html': '${PT_HTML}'," >> public/index.html
+          cat >> public/index.html << 'INDEXEOF'
+                                  'pdf': 'INDEXEOF
+          echo "                                  'pdf': '${PT_PDF}'" >> public/index.html
+          cat >> public/index.html << 'INDEXEOF'
+                              }
+                          };
+
+                          if (fileMap[langParam] && fileMap[langParam][formatParam]) {
+                              window.location.href = fileMap[langParam][formatParam];
+                          }
+                      }
+                  });
+              </script>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>Select Language</h1>
+                  <p>Choose your preferred language and format to view the CV</p>
+
+                  <div class="language-section">
+                      <div class="language-title"><span class="flag">🇺🇸</span> English</div>
+                      <div class="button-group">
+                          <a href="INDEXEOF
+          echo "                          <a href=\"${EN_HTML}\" class=\"btn\" aria-label=\"View English CV in HTML\">" >> public/index.html
+          cat >> public/index.html << 'INDEXEOF'
+                              📄 View HTML
+                          </a>
+                          <a href="INDEXEOF
+          echo "                          <a href=\"${EN_PDF}\" class=\"btn btn-secondary\" aria-label=\"View English CV in PDF\">" >> public/index.html
+          cat >> public/index.html << 'INDEXEOF'
+                              📑 Download PDF
+                          </a>
+                      </div>
+                  </div>
+
+                  <div class="language-section">
+                      <div class="language-title"><span class="flag">🇧🇷</span> Português</div>
+                      <div class="button-group">
+                          <a href="INDEXEOF
+          echo "                          <a href=\"${PT_HTML}\" class=\"btn\" aria-label=\"Ver CV em Português em HTML\">" >> public/index.html
+          cat >> public/index.html << 'INDEXEOF'
+                              📄 Ver HTML
+                          </a>
+                          <a href="INDEXEOF
+          echo "                          <a href=\"${PT_PDF}\" class=\"btn btn-secondary\" aria-label=\"Ver CV em Português em PDF\">" >> public/index.html
+          cat >> public/index.html << 'INDEXEOF'
+                              📑 Baixar PDF
+                          </a>
+                      </div>
+                  </div>
+
+                  <div class="footer">
+                      Built with <a href="https://rendercv.com" target="_blank" rel="noopener">RenderCV</a>
+                  </div>
+              </div>
+          </body>
+          </html>
+          INDEXEOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Deployment summary
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+          EN_HTML: ${{ needs.build.outputs.en-html-name }}
+          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
+          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
+          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Successfully deployed to GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🌐 URLs" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Resource | URL |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-----|" >> $GITHUB_STEP_SUMMARY
+          echo "| Landing Page | [${PAGES_URL}](${PAGES_URL}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| English HTML | [${PAGES_URL}${EN_HTML}](${PAGES_URL}${EN_HTML}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Portuguese HTML | [${PAGES_URL}${PT_HTML}](${PAGES_URL}${PT_HTML}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| English PDF | [${PAGES_URL}${EN_PDF}](${PAGES_URL}${EN_PDF}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Portuguese PDF | [${PAGES_URL}${PT_PDF}](${PAGES_URL}${PT_PDF}) |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📝 Quick Links" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 [English HTML](${ PAGES_URL}?lang=en&format=html)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 [Portuguese HTML](${PAGES_URL}?lang=pt&format=html)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 [English PDF](${PAGES_URL}?lang=en&format=pdf)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 [Portuguese PDF](${PAGES_URL}?lang=pt&format=pdf)" >> $GITHUB_STEP_SUMMARY

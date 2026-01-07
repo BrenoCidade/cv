@@ -1,0 +1,228 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Release tag name (e.g., v1.0.0)'
+        required: true
+        type: string
+      prerelease:
+        description: 'Mark as pre-release'
+        required: false
+        type: boolean
+        default: false
+  workflow_call:
+    inputs:
+      tag_name:
+        description: 'Release tag name (e.g., v1.0.0)'
+        required: true
+        type: string
+      prerelease:
+        description: 'Mark as pre-release'
+        required: false
+        type: boolean
+        default: false
+      pages_url:
+        description: 'GitHub Pages URL for CV viewing'
+        required: false
+        type: string
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact-name }}
+          path: ./artifacts
+
+      - name: Determine release tag
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "tag=${{ inputs.tag_name }}" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event_name }}" = "workflow_call" ]; then
+            echo "tag=${{ inputs.tag_name }}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Determine GitHub Pages URL
+        id: pages
+        run: |
+          # Use provided pages_url or construct default
+          if [ -n "${{ inputs.pages_url }}" ]; then
+            PAGES_URL="${{ inputs.pages_url }}"
+          else
+            # Extract owner and repo from github.repository
+            OWNER=$(echo "${{ github.repository }}" | cut -d'/' -f1)
+            REPO=$(echo "${{ github.repository }}" | cut -d'/' -f2)
+            PAGES_URL="https://${OWNER}.github.io/${REPO}/"
+          fi
+          echo "url=${PAGES_URL}" >> $GITHUB_OUTPUT
+
+      - name: Prepare release files
+        env:
+          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
+          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
+        run: |
+          mkdir -p release
+
+          # Copy PDFs using dynamic names from build workflow
+          cp "artifacts/${EN_PDF}" release/
+          cp "artifacts/${PT_PDF}" release/
+
+          # Create a README for the release
+          cat > release/README.txt << EOF
+          CV Release
+          ==========
+
+          This release contains the CV in both English and Portuguese.
+
+          Files:
+          - ${EN_PDF}: English version
+          - ${PT_PDF}: Portuguese version
+
+          Build Information:
+          EOF
+
+          # Append metadata if available
+          if [ -f artifacts/metadata.json ]; then
+            echo "" >> release/README.txt
+            cat artifacts/metadata.json >> release/README.txt
+          fi
+
+      - name: Generate release notes
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+          PAGES_URL: ${{ steps.pages.outputs.url }}
+          REPO_URL: https://github.com/${{ github.repository }}
+          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
+          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
+          EN_HTML: ${{ needs.build.outputs.en-html-name }}
+          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
+        run: |
+          # Remove .html extension for web links (GitHub Pages serves without extension)
+          EN_HTML_BASE="${EN_HTML%.html}"
+          PT_HTML_BASE="${PT_HTML%.html}"
+
+          cat > release_notes.md << EOF
+          ## 📄 CV Release ${TAG}
+
+          This release contains professionally formatted CV PDFs in both English and Portuguese.
+
+          ### 🌐 View Online (GitHub Pages)
+
+          | View | Link |
+          |------|------|
+          | 🇺🇸 English (HTML) | [View English CV](${PAGES_URL}${EN_HTML}) |
+          | 🇧🇷 Portuguese (HTML) | [View Portuguese CV](${PAGES_URL}${PT_HTML}) |
+          | 🇺🇸 English (PDF) | [View English PDF](${PAGES_URL}${EN_PDF}) |
+          | 🇧🇷 Portuguese (PDF) | [View Portuguese PDF](${PAGES_URL}${PT_PDF}) |
+
+          ### 📥 Download PDF (Release Assets)
+
+          | Language | Direct Download |
+          |----------|----------------|
+          | 🇺🇸 English | [${EN_PDF}](${REPO_URL}/releases/download/${TAG}/${EN_PDF}) |
+          | 🇧🇷 Portuguese | [${PT_PDF}](${REPO_URL}/releases/download/${TAG}/${PT_PDF}) |
+
+          ### 📦 What's Included
+
+          - **${EN_PDF}** - English version of the CV (PDF)
+          - **${PT_PDF}** - Portuguese version of the CV (PDF)
+          - **README.txt** - Build information and metadata
+
+          ### 🛠️ Built With
+
+          - [RenderCV](https://rendercv.com) - Professional CV generator using Typst
+          - Generated from commit: \`${{ github.sha }}\`
+          - Build run: [#${{ github.run_number }}](${REPO_URL}/actions/runs/${{ github.run_id }})
+
+          EOF
+
+          # Add recent changes if this is a tag-based release
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "" >> release_notes.md
+            echo "### 📝 Recent Changes" >> release_notes.md
+            echo "" >> release_notes.md
+
+            # Get commits since last tag
+            LAST_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+            if [ -n "$LAST_TAG" ]; then
+              echo "Changes since ${LAST_TAG}:" >> release_notes.md
+              echo "" >> release_notes.md
+              git log ${LAST_TAG}..HEAD --pretty=format:"- %s (%h)" --no-merges >> release_notes.md || true
+            else
+              echo "Recent commits:" >> release_notes.md
+              echo "" >> release_notes.md
+              git log --pretty=format:"- %s (%h)" --no-merges -10 >> release_notes.md || true
+            fi
+          fi
+
+      - name: Create Release
+        env:
+          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
+          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
+        run: |
+          gh release create "${{ steps.tag.outputs.tag }}" \
+            --title "CV Release ${{ steps.tag.outputs.tag }}" \
+            --notes-file release_notes.md \
+            --draft=false \
+            --prerelease=${{ inputs.prerelease || false }} \
+            "release/${EN_PDF}" \
+            "release/${PT_PDF}" \
+            "release/README.txt"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release summary
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+          PAGES_URL: ${{ steps.pages.outputs.url }}
+          REPO_URL: https://github.com/${{ github.repository }}
+          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
+          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
+          EN_HTML: ${{ needs.build.outputs.en-html-name }}
+          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
+        run: |
+          echo "## 📦 Release Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Successfully created release \`${TAG}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🌐 View Online" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Format | Language | Link |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|----------|------|" >> $GITHUB_STEP_SUMMARY
+          echo "| HTML | English | [${EN_HTML}](${PAGES_URL}${EN_HTML}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| HTML | Portuguese | [${PT_HTML}](${PAGES_URL}${PT_HTML}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| PDF | English | [${EN_PDF}](${PAGES_URL}${EN_PDF}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| PDF | Portuguese | [${PT_PDF}](${PAGES_URL}${PT_PDF}) |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📥 Download Release Assets" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Asset | Download Link |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| English CV | [${EN_PDF}](${REPO_URL}/releases/download/${TAG}/${EN_PDF}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Portuguese CV | [${PT_PDF}](${REPO_URL}/releases/download/${TAG}/${PT_PDF}) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Build Info | [README.txt](${REPO_URL}/releases/download/${TAG}/README.txt) |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔗 Links" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- 📦 [View Release](${REPO_URL}/releases/tag/${TAG})" >> $GITHUB_STEP_SUMMARY
+          echo "- 📋 [All Releases](${REPO_URL}/releases)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔨 [Build Workflow](${REPO_URL}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
