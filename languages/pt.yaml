@@ -9,7 +9,7 @@ cv:
   headline: Engenheiro de Software Sênior
   summary: Engenheiro de software full-stack com mais de 7 anos de experiência em desenvolvimento web escalável. Especializado em arquitetura de Micro Frontends e ecossistema React moderno (Next.js, Remix, Astro), com forte experiência em TypeScript, Node.js e Angular. Possuo conhecimento sólido em DevOps e infraestrutura (Kubernetes, Docker, CI/CD), mantendo homelab pessoal há 3 anos. Histórico de liderar iniciativas de padronização, otimização de performance e modernização de sistemas legados.
   sections:
-    experience:
+    Experiência:
       - company: Hospital Israelita Albert Einstein
         position: Engenheiro de Software Sênior
         start_date: 2021-08
@@ -46,14 +46,14 @@ cv:
           - Desenvolvimento de aplicações mobile e web utilizando C#, .NET Core e Xamarin Forms
           - Implementação de sistemas CRM que otimizaram processos de vendas e atendimento ao cliente
 
-    education:
+    Educação:
       - institution: FIAP
         area: Sistema da Informação
         degree: Bacharelado
         start_date: 2020
         end_date: 2025
 
-    skills:
+    Habilidades:
       - label: Principais Competências
         details: JavaScript, TypeScript, React.js, Node.js, Desenvolvimento Full-Stack
       - label: Frameworks Frontend
@@ -67,7 +67,7 @@ cv:
       - label: Mobile
         details: React Native, Xamarin Forms
 
-    idiomas:
+    Idiomas:
       - label: Português
         details: Nativo
       - label: Inglês
