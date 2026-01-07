@@ -5,36 +5,28 @@ cv:
   social_networks:
     - network: LinkedIn
       username: gojnimer
-  headline: Desenvolvedor Frontend Sênior
-  summary: Desenvolvedor front-end sênior com experiência sólida em aplicações web escaláveis. Tenho mais de 7 anos de experiência em desenvolvimento front-end. Crio aplicações web e mobile robustas e de alta performance, dominando frameworks modernos — React, Next.js, Remix, Astro, Angular, Node.js e TypeScript — e arquitetura de Micro Frontends (MFE). Tenho histórico de liderar iniciativas de padronização e otimização de performance em projetos críticos, sempre buscando utilizar as tecnologias mais atuais. Possuo experiência em setores altamente regulados, como saúde e finanças, integrando sistemas complexos e garantindo segurança e usabilidade.
+  headline: Engenheiro de Software Sênior
+  summary: Engenheiro de software full-stack com mais de 7 anos de experiência em desenvolvimento web escalável. Especializado em arquitetura de Micro Frontends e ecossistema React moderno (Next.js, Remix, Astro), com forte experiência em TypeScript, Node.js e Angular. Possuo conhecimento sólido em DevOps e infraestrutura (Kubernetes, Docker, CI/CD), mantendo homelab pessoal há 3 anos. Histórico de liderar iniciativas de padronização, otimização de performance e modernização de sistemas legados.
   sections:
     experience:
       - company: Hospital Israelita Albert Einstein
-        position: Desenvolvedor Frontend Sênior
+        position: Engenheiro de Software Sênior
         start_date: 2021-08
         end_date: present
         highlights:
-          - Implantei um framework de formulários médicos dinâmicos, consolidando diversos projetos legados em uma única plataforma configurável
-          - Padronizei e modernizei a arquitetura de MFE, melhorando a escalabilidade e facilitando a manutenção dos sistemas internos do hospital
-          - Integrei serviços de prontuário e sistemas médicos, garantindo troca de dados em tempo real e maior fluidez no atendimento
-
-      - company: BOLD Brasil
-        position: Desenvolvedor Frontend Sênior
-        start_date: 2021-12
-        end_date: present
-        highlights:
-          - Desenvolvimento de soluções frontend para plataforma financeira
+          - Implantei framework de formulários médicos dinâmicos, consolidando diversos projetos legados em uma única plataforma configurável
+          - Padronizei e modernizei a arquitetura de Micro Frontends (MFE), melhorando escalabilidade e manutenibilidade dos sistemas internos
+          - Desenvolvi e mantive design system em React, garantindo consistência visual e reutilização de componentes em toda a plataforma
+          - Integrei serviços de prontuário eletrônico e sistemas médicos, garantindo troca de dados em tempo real
 
       - company: Bradesco
-        position: Desenvolvedor Frontend Sênior
+        position: Engenheiro de Software Sênior
         start_date: 2020-06
         end_date: 2021-08
         highlights:
-          - Responsável pela área de Notificações do app mobile principal do Bradesco, desenvolvendo funcionalidades de comunicação com usuários
-          - Utilizei Angular e React Native em arquitetura MFE, garantindo precisão e agilidade nas notificações
-          - Colaborei com equipes de backend para orquestrar disparos de mensagens sensíveis, como transações e alertas de fraude
-          - Desenvolvi telas de autorização e configuração de notificações, oferecendo controle e usabilidade aos clientes
-          - Contribuí em projeto utilizado por milhões de correntistas durante forte crescimento da bancarização digital no Brasil
+          - Responsável pela área de Notificações do app mobile principal, desenvolvendo funcionalidades críticas de comunicação com milhões de usuários
+          - Utilizei Angular e React Native em arquitetura MFE, garantindo precisão e agilidade nas notificações transacionais e alertas de fraude
+          - Desenvolvi sistema de autorização e configuração de notificações, melhorando usabilidade e controle do usuário
 
       - company: Foursys
         position: Desenvolvedor Frontend
@@ -42,15 +34,16 @@ cv:
         start_date: 2020-02
         end_date: 2020-06
         highlights:
-          - Desenvolvimento de soluções frontend
+          - Desenvolvimento de aplicações web com React e TypeScript para clientes corporativos
+          - Participação em projetos de modernização de interfaces legadas
 
       - company: Fullware Tecnologia De Sistemas
-        position: Desenvolvedor Mobile (C# / Xamarin Forms)
+        position: Desenvolvedor Mobile
         start_date: 2018-06
         end_date: 2020-02
         highlights:
-          - Desenvolvimento mobile e web usando C#, .NET Core e Xamarin Forms
-          - Sistemas de CRM que ajudaram a melhorar processos de vendas e atendimento
+          - Desenvolvimento de aplicações mobile e web utilizando C#, .NET Core e Xamarin Forms
+          - Implementação de sistemas CRM que otimizaram processos de vendas e atendimento ao cliente
 
     education:
       - institution: FIAP
@@ -61,15 +54,17 @@ cv:
 
     skills:
       - label: Principais Competências
-        details: JavaScript, React.js, Desenvolvimento de Software
-      - label: Frameworks e Bibliotecas
-        details: React, Next.js, Remix, Astro, Angular, Node.js, TypeScript
-      - label: Arquitetura
-        details: Micro Frontends (MFE)
+        details: JavaScript, TypeScript, React.js, Node.js, Desenvolvimento Full-Stack
+      - label: Frameworks Frontend
+        details: React, Next.js, Remix, Astro, Angular
+      - label: Arquitetura e Infraestrutura
+        details: Kubernetes, Docker, CI/CD, DevOps
+      - label: Backend
+        details: Node.js, C#, .NET Core, BaaS, Arquitetura Orientada a Eventos
+      - label: AI e Metodologias
+        details: Agentic Development, Prompt Engineering, TDD, Spec-Oriented Development
       - label: Mobile
         details: React Native, Xamarin Forms
-      - label: Backend
-        details: C#, .NET Core
 design:
   theme: moderncv
 locale:
