@@ -67,6 +67,17 @@ jobs:
           REPO=$(echo "${{ github.repository }}" | cut -d'/' -f2)
           PAGES_URL="https://${OWNER}.github.io/${REPO}"
 
+          # Language code to display name mapping
+          declare -A LANG_NAMES
+          LANG_NAMES["en"]="🇺🇸 English"
+          LANG_NAMES["pt"]="🇧🇷 Portuguese"
+          LANG_NAMES["es"]="🇪🇸 Spanish"
+          LANG_NAMES["fr"]="🇫🇷 French"
+          LANG_NAMES["de"]="🇩🇪 German"
+          LANG_NAMES["it"]="🇮🇹 Italian"
+          LANG_NAMES["ja"]="🇯🇵 Japanese"
+          LANG_NAMES["zh"]="🇨🇳 Chinese"
+
           # Start README
           cat > repo/README.md << 'EOF'
           # Curriculum Vitae
@@ -76,17 +87,16 @@ jobs:
           EOF
 
           # Generate rows for each PDF found
-          for pdf in artifacts/*.pdf; do
-            if [ -f "$pdf" ]; then
-              PDF_FILE=$(basename "$pdf")
+          if [ -f artifacts/lang_mapping.txt ]; then
+            while IFS=: read -r PDF_FILE LANG_CODE; do
               HTML_FILE="${PDF_FILE%.pdf}.html"
 
-              # Extract name from filename (e.g., "John_Doe_CV.pdf" -> "John Doe")
-              LANG_NAME=$(basename "$PDF_FILE" .pdf | sed 's/_CV$//' | sed 's/_/ /g')
+              # Get display name from mapping, fallback to code
+              LANG_DISPLAY="${LANG_NAMES[$LANG_CODE]:-$LANG_CODE}"
 
-              echo "| $LANG_NAME | [Preview](${PAGES_URL}/${HTML_FILE}) | [Download](${PAGES_URL}/${PDF_FILE}) |" >> repo/README.md
-            fi
-          done
+              echo "| $LANG_DISPLAY | [Preview](${PAGES_URL}/${HTML_FILE}) | [Download](${PAGES_URL}/${PDF_FILE}) |" >> repo/README.md
+            done < artifacts/lang_mapping.txt
+          fi
 
           # Add footer
           cat >> repo/README.md << 'EOF'
@@ -98,6 +108,17 @@ jobs:
 
       - name: Create index.html
         run: |
+          # Language code to display name mapping
+          declare -A LANG_NAMES
+          LANG_NAMES["en"]="🇺🇸 English"
+          LANG_NAMES["pt"]="🇧🇷 Portuguese"
+          LANG_NAMES["es"]="🇪🇸 Spanish"
+          LANG_NAMES["fr"]="🇫🇷 French"
+          LANG_NAMES["de"]="🇩🇪 German"
+          LANG_NAMES["it"]="🇮🇹 Italian"
+          LANG_NAMES["ja"]="🇯🇵 Japanese"
+          LANG_NAMES["zh"]="🇨🇳 Chinese"
+
           cat > public/index.html << 'EOF'
           <!DOCTYPE html>
           <html lang="en">
@@ -161,24 +182,23 @@ jobs:
                   <tbody>
           EOF
 
-          # Generate table rows for each PDF found
-          for pdf in public/*.pdf; do
-            if [ -f "$pdf" ]; then
-              PDF_FILE=$(basename "$pdf")
+          # Generate table rows using language mapping
+          if [ -f artifacts/lang_mapping.txt ]; then
+            while IFS=: read -r PDF_FILE LANG_CODE; do
               HTML_FILE="${PDF_FILE%.pdf}.html"
 
-              # Extract name from filename
-              LANG_NAME=$(basename "$PDF_FILE" .pdf | sed 's/_CV$//' | sed 's/_/ /g')
+              # Get display name from mapping, fallback to code
+              LANG_DISPLAY="${LANG_NAMES[$LANG_CODE]:-$LANG_CODE}"
 
               cat >> public/index.html << EOF
                       <tr>
-                          <td>$LANG_NAME</td>
+                          <td>$LANG_DISPLAY</td>
                           <td><a href="$HTML_FILE">Preview</a></td>
                           <td><a href="$PDF_FILE">Download</a></td>
                       </tr>
           EOF
-            fi
-          done
+            done < artifacts/lang_mapping.txt
+          fi
 
           cat >> public/index.html << 'EOF'
                   </tbody>
@@ -219,6 +239,17 @@ jobs:
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
+          # Language code to display name mapping
+          declare -A LANG_NAMES
+          LANG_NAMES["en"]="🇺🇸 English"
+          LANG_NAMES["pt"]="🇧🇷 Portuguese"
+          LANG_NAMES["es"]="🇪🇸 Spanish"
+          LANG_NAMES["fr"]="🇫🇷 French"
+          LANG_NAMES["de"]="🇩🇪 German"
+          LANG_NAMES["it"]="🇮🇹 Italian"
+          LANG_NAMES["ja"]="🇯🇵 Japanese"
+          LANG_NAMES["zh"]="🇨🇳 Chinese"
+
           echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✅ Successfully deployed to GitHub Pages" >> $GITHUB_STEP_SUMMARY
@@ -232,13 +263,14 @@ jobs:
           echo "| Language | HTML | PDF |" >> $GITHUB_STEP_SUMMARY
           echo "|----------|------|-----|" >> $GITHUB_STEP_SUMMARY
 
-          # Generate summary rows for each PDF
-          for pdf in public/*.pdf; do
-            if [ -f "$pdf" ]; then
-              PDF_FILE=$(basename "$pdf")
+          # Generate summary rows using language mapping
+          if [ -f artifacts/lang_mapping.txt ]; then
+            while IFS=: read -r PDF_FILE LANG_CODE; do
               HTML_FILE="${PDF_FILE%.pdf}.html"
-              LANG_NAME=$(basename "$PDF_FILE" .pdf | sed 's/_CV$//' | sed 's/_/ /g')
 
-              echo "| $LANG_NAME | [Preview](${PAGES_URL}${HTML_FILE}) | [Download](${PAGES_URL}${PDF_FILE}) |" >> $GITHUB_STEP_SUMMARY
-            fi
-          done
+              # Get display name from mapping, fallback to code
+              LANG_DISPLAY="${LANG_NAMES[$LANG_CODE]:-$LANG_CODE}"
+
+              echo "| $LANG_DISPLAY | [Preview](${PAGES_URL}${HTML_FILE}) | [Download](${PAGES_URL}${PDF_FILE}) |" >> $GITHUB_STEP_SUMMARY
+            done < artifacts/lang_mapping.txt
+          fi

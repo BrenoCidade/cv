@@ -55,21 +55,40 @@ jobs:
       - name: Create artifacts directory
         run: mkdir -p artifacts
 
-      - name: Build English CV
+      - name: Build CVs
         run: |
           cd languages
-          rendercv render en.yaml
 
-      - name: Build Portuguese CV
-        run: |
-          cd languages
-          rendercv render pt.yaml
+          # Build all YAML files and create language mapping
+          for yaml in *.yaml; do
+            if [ -f "$yaml" ]; then
+              echo "Building $yaml..."
+              rendercv render "$yaml"
+
+              # Extract language code from filename (e.g., en.yaml -> en)
+              LANG_CODE=$(basename "$yaml" .yaml)
+
+              # Find the generated PDF to map it to the language
+              # The PDF will be the newest file in rendercv_output after this build
+              PDF_FILE=$(ls -t rendercv_output/*.pdf | head -1)
+              if [ -f "$PDF_FILE" ]; then
+                PDF_NAME=$(basename "$PDF_FILE")
+                echo "$PDF_NAME:$LANG_CODE" >> ../lang_mapping.txt
+                echo "Mapped $PDF_NAME to language: $LANG_CODE"
+              fi
+            fi
+          done
 
       - name: Copy build artifacts
         run: |
           # Copy all PDFs and HTML files recursively
           find languages/rendercv_output -name "*.pdf" -exec cp {} artifacts/ \;
           find languages/rendercv_output -name "*.html" -exec cp {} artifacts/ \;
+
+          # Copy language mapping
+          if [ -f lang_mapping.txt ]; then
+            cp lang_mapping.txt artifacts/
+          fi
 
           echo "Copied artifacts:"
           ls -lh artifacts/
