@@ -50,42 +50,46 @@ jobs:
           path: repo
 
       - name: Prepare deployment directory
-        env:
-          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
-          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
-          EN_HTML: ${{ needs.build.outputs.en-html-name }}
-          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
         run: |
           mkdir -p public
 
-          # Copy RenderCV-generated HTML files
-          cp "artifacts/${EN_HTML}" public/
-          cp "artifacts/${PT_HTML}" public/
+          # Copy all PDFs and HTML files to public directory
+          cp artifacts/*.pdf public/ 2>/dev/null || true
+          cp artifacts/*.html public/ 2>/dev/null || true
 
-          # Copy PDF files
-          cp "artifacts/${EN_PDF}" public/
-          cp "artifacts/${PT_PDF}" public/
+          echo "Files copied to public directory:"
+          ls -lh public/
 
       - name: Generate README.md
-        env:
-          EN_HTML: ${{ needs.build.outputs.en-html-name }}
-          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
-          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
-          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
         run: |
           # Get GitHub Pages URL
           OWNER=$(echo "${{ github.repository }}" | cut -d'/' -f1)
           REPO=$(echo "${{ github.repository }}" | cut -d'/' -f2)
           PAGES_URL="https://${OWNER}.github.io/${REPO}"
 
-          # Generate README
-          cat > repo/README.md << EOF
+          # Start README
+          cat > repo/README.md << 'EOF'
           # Curriculum Vitae
 
           | Language | Preview (HTML) | PDF |
           |----------|----------------|------|
-          | 🇺🇸 English | [Preview](${PAGES_URL}/${EN_HTML}) | [Download](${PAGES_URL}/${EN_PDF}) |
-          | 🇧🇷 Portuguese | [Preview](${PAGES_URL}/${PT_HTML}) | [Download](${PAGES_URL}/${PT_PDF}) |
+          EOF
+
+          # Generate rows for each PDF found
+          for pdf in artifacts/*.pdf; do
+            if [ -f "$pdf" ]; then
+              PDF_FILE=$(basename "$pdf")
+              HTML_FILE="${PDF_FILE%.pdf}.html"
+
+              # Extract name from filename (e.g., "John_Doe_CV.pdf" -> "John Doe")
+              LANG_NAME=$(basename "$PDF_FILE" .pdf | sed 's/_CV$//' | sed 's/_/ /g')
+
+              echo "| $LANG_NAME | [Preview](${PAGES_URL}/${HTML_FILE}) | [Download](${PAGES_URL}/${PDF_FILE}) |" >> repo/README.md
+            fi
+          done
+
+          # Add footer
+          cat >> repo/README.md << 'EOF'
 
           ---
 
@@ -93,11 +97,6 @@ jobs:
           EOF
 
       - name: Create index.html
-        env:
-          EN_HTML: ${{ needs.build.outputs.en-html-name }}
-          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
-          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
-          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
         run: |
           cat > public/index.html << 'EOF'
           <!DOCTYPE html>
@@ -162,18 +161,24 @@ jobs:
                   <tbody>
           EOF
 
-          cat >> public/index.html << EOF
+          # Generate table rows for each PDF found
+          for pdf in public/*.pdf; do
+            if [ -f "$pdf" ]; then
+              PDF_FILE=$(basename "$pdf")
+              HTML_FILE="${PDF_FILE%.pdf}.html"
+
+              # Extract name from filename
+              LANG_NAME=$(basename "$PDF_FILE" .pdf | sed 's/_CV$//' | sed 's/_/ /g')
+
+              cat >> public/index.html << EOF
                       <tr>
-                          <td>🇺🇸 English</td>
-                          <td><a href="${EN_HTML}">Preview</a></td>
-                          <td><a href="${EN_PDF}">Download</a></td>
-                      </tr>
-                      <tr>
-                          <td>🇧🇷 Portuguese</td>
-                          <td><a href="${PT_HTML}">Preview</a></td>
-                          <td><a href="${PT_PDF}">Download</a></td>
+                          <td>$LANG_NAME</td>
+                          <td><a href="$HTML_FILE">Preview</a></td>
+                          <td><a href="$PDF_FILE">Download</a></td>
                       </tr>
           EOF
+            fi
+          done
 
           cat >> public/index.html << 'EOF'
                   </tbody>
@@ -213,26 +218,27 @@ jobs:
       - name: Deployment summary
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
-          EN_HTML: ${{ needs.build.outputs.en-html-name }}
-          PT_HTML: ${{ needs.build.outputs.pt-html-name }}
-          EN_PDF: ${{ needs.build.outputs.en-pdf-name }}
-          PT_PDF: ${{ needs.build.outputs.pt-pdf-name }}
         run: |
           echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "✅ Successfully deployed to GitHub Pages" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 🌐 URLs" >> $GITHUB_STEP_SUMMARY
+          echo "### 🌐 Landing Page" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Resource | URL |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------|-----|" >> $GITHUB_STEP_SUMMARY
-          echo "| Landing Page | [${PAGES_URL}](${PAGES_URL}) |" >> $GITHUB_STEP_SUMMARY
-          echo "| English HTML | [${PAGES_URL}${EN_HTML}](${PAGES_URL}${EN_HTML}) |" >> $GITHUB_STEP_SUMMARY
-          echo "| Portuguese HTML | [${PAGES_URL}${PT_HTML}](${PAGES_URL}${PT_HTML}) |" >> $GITHUB_STEP_SUMMARY
-          echo "| English PDF | [${PAGES_URL}${EN_PDF}](${PAGES_URL}${EN_PDF}) |" >> $GITHUB_STEP_SUMMARY
-          echo "| Portuguese PDF | [${PAGES_URL}${PT_PDF}](${PAGES_URL}${PT_PDF}) |" >> $GITHUB_STEP_SUMMARY
+          echo "[${PAGES_URL}](${PAGES_URL})" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 📝 Direct Links" >> $GITHUB_STEP_SUMMARY
+          echo "### 📄 CV Files" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- 🇺🇸 English: [HTML](${PAGES_URL}${EN_HTML}) | [PDF](${PAGES_URL}${EN_PDF})" >> $GITHUB_STEP_SUMMARY
-          echo "- 🇧🇷 Portuguese: [HTML](${PAGES_URL}${PT_HTML}) | [PDF](${PAGES_URL}${PT_PDF})" >> $GITHUB_STEP_SUMMARY
+          echo "| Language | HTML | PDF |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|------|-----|" >> $GITHUB_STEP_SUMMARY
+
+          # Generate summary rows for each PDF
+          for pdf in public/*.pdf; do
+            if [ -f "$pdf" ]; then
+              PDF_FILE=$(basename "$pdf")
+              HTML_FILE="${PDF_FILE%.pdf}.html"
+              LANG_NAME=$(basename "$PDF_FILE" .pdf | sed 's/_CV$//' | sed 's/_/ /g')
+
+              echo "| $LANG_NAME | [Preview](${PAGES_URL}${HTML_FILE}) | [Download](${PAGES_URL}${PDF_FILE}) |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
