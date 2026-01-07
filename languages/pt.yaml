@@ -2,6 +2,7 @@ cv:
   name: Guilherme Nimer Gojlevicius
   location: São Paulo, Brasil
   email: gojnimer@gmail.com
+  phone: +55 11 948659453
   social_networks:
     - network: LinkedIn
       username: gojnimer
@@ -58,13 +59,19 @@ cv:
       - label: Frameworks Frontend
         details: React, Next.js, Remix, Astro, Angular
       - label: Arquitetura e Infraestrutura
-        details: Kubernetes, Docker, CI/CD, DevOps
+        details: Kubernetes, Docker, CI/CD
       - label: Backend
         details: Node.js, C#, .NET Core, BaaS, Arquitetura Orientada a Eventos
       - label: AI e Metodologias
         details: Agentic Development, Prompt Engineering, TDD, Spec-Oriented Development
       - label: Mobile
         details: React Native, Xamarin Forms
+
+    idiomas:
+      - label: Português
+        details: Nativo
+      - label: Inglês
+        details: Avançado
 design:
   theme: moderncv
 locale:
