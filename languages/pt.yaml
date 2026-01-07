@@ -74,15 +74,3 @@ design:
   theme: moderncv
 locale:
   language: portuguese
-    - jan
-    - fev
-    - mar
-    - abr
-    - maio
-    - jun
-    - jul
-    - ago
-    - set
-    - out
-    - nov
-    - dez
