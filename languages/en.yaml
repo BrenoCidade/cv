@@ -2,40 +2,32 @@ cv:
   name: Guilherme Nimer Gojlevicius
   location: São Paulo, Brazil
   email: gojnimer@gmail.com
+  phone: +55 11 948659453
   social_networks:
     - network: LinkedIn
       username: gojnimer
-  headline: Senior Frontend Developer
-  summary: Senior front-end developer with solid experience in scalable web applications. Over 7 years of experience in front-end development. I create robust, high-performance web and mobile applications, mastering modern frameworks — React, Next.js, Remix, Astro, Angular, Node.js and TypeScript — and Micro Frontend (MFE) architecture. I have a track record of leading standardization and performance optimization initiatives in critical projects, always seeking to use the most current technologies. I have experience in highly regulated sectors such as healthcare and finance, integrating complex systems and ensuring security and usability.
-
+  headline: Senior Software Engineer
+  summary: Full-stack software engineer with over 7 years of experience in scalable web development. Specialized in Micro Frontend architecture and modern React ecosystem (Next.js, Remix, Astro), with strong experience in TypeScript, Node.js, and Angular. Possess solid knowledge in DevOps and infrastructure (Kubernetes, Docker, CI/CD), maintaining personal homelab for 3 years. Track record of leading standardization initiatives, performance optimization, and legacy systems modernization.
   sections:
-    experience:
+    Experience:
       - company: Hospital Israelita Albert Einstein
-        position: Senior Frontend Developer
+        position: Senior Software Engineer
         start_date: 2021-08
         end_date: present
         highlights:
-          - Implemented a dynamic medical forms framework, consolidating various legacy projects into a single configurable platform
-          - Standardized and modernized MFE architecture, improving scalability and facilitating maintenance of the hospital's internal systems
-          - Integrated medical record services and medical systems, ensuring real-time data exchange and greater fluidity in care
-
-      - company: BOLD Brasil
-        position: Senior Frontend Developer
-        start_date: 2021-12
-        end_date: present
-        highlights:
-          - Frontend solutions development for financial platform
+          - Implemented dynamic medical forms framework, consolidating multiple legacy projects into a single configurable platform
+          - Standardized and modernized Micro Frontends (MFE) architecture, improving scalability and maintainability of internal systems
+          - Developed and maintained design system in React, ensuring visual consistency and component reusability across the platform
+          - Integrated electronic health record services and medical systems, ensuring real-time data exchange
 
       - company: Bradesco
-        position: Senior Frontend Developer
+        position: Senior Software Engineer
         start_date: 2020-06
         end_date: 2021-08
         highlights:
-          - Responsible for the Notifications area of Bradesco's main mobile app, developing user communication functionalities
-          - Used Angular and React Native in MFE architecture, ensuring accuracy and agility in notifications
-          - Collaborated directly with backend teams to orchestrate sensitive message dispatches such as transactions and fraud alerts
-          - Developed authorization and notification configuration screens, offering control and usability to customers
-          - Contributed to a project used by millions of account holders during strong digital banking growth in Brazil
+          - Led the Notifications area of the main mobile app, developing critical communication features for millions of users
+          - Utilized Angular and React Native in MFE architecture, ensuring precision and agility in transactional notifications and fraud alerts
+          - Developed authorization and notification configuration system, improving usability and user control
 
       - company: Foursys
         position: Frontend Developer
@@ -43,41 +35,44 @@ cv:
         start_date: 2020-02
         end_date: 2020-06
         highlights:
-          - Frontend solutions development
+          - Development of web applications with React and TypeScript for corporate clients
+          - Participation in legacy interface modernization projects
 
       - company: Fullware Tecnologia De Sistemas
-        position: Mobile Developer (C# / Xamarin Forms)
+        position: Mobile Developer
         start_date: 2018-06
         end_date: 2020-02
         highlights:
-          - Mobile and web development using C#, .NET Core and Xamarin Forms
-          - CRM systems that helped improve sales and service processes
+          - Development of mobile and web applications using C#, .NET Core, and Xamarin Forms
+          - Implementation of CRM systems that optimized sales and customer service processes
 
-    education:
+    Education:
       - institution: FIAP
         area: Information Systems
         degree: Bachelor's Degree
         start_date: 2020
         end_date: 2025
 
-    skills:
+    Skills:
       - label: Core Competencies
-        details: JavaScript, React.js, Software Development
-      - label: Frameworks & Libraries
-        details: React, Next.js, Remix, Astro, Angular, Node.js, TypeScript
-      - label: Architecture
-        details: Micro Frontends (MFE)
+        details: JavaScript, TypeScript, React.js, Node.js, Full-Stack Development
+      - label: Frontend Frameworks
+        details: React, Next.js, Remix, Astro, Angular
+      - label: Architecture & Infrastructure
+        details: Kubernetes, Docker, CI/CD
+      - label: Backend
+        details: Node.js, C#, .NET Core, BaaS, Event-Driven Architecture
+      - label: AI & Methodologies
+        details: Agentic Development, Prompt Engineering, TDD, Spec-Oriented Development
       - label: Mobile
         details: React Native, Xamarin Forms
-      - label: Backend
-        details: C#, .NET Core
 
+    Languages:
+      - label: Portuguese
+        details: Native
+      - label: English
+        details: Advanced
 design:
-  theme: classic
-  colors:
-    name: rgb(0, 79, 144)
-    connections: rgb(0, 79, 144)
-    section_titles: rgb(0, 79, 144)
-    links: rgb(0, 79, 144)
+  theme: engineeringclassic
 locale:
   language: english
