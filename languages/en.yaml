@@ -1,78 +1,87 @@
 cv:
-  name: Guilherme Nimer Gojlevicius
-  location: São Paulo, Brazil
-  email: gojnimer@gmail.com
-  phone: +55 11 948659453
+  name: Breno Cidade
+  location: Salvador, Brazil
+  email: brenocidadedev@gmail.com
+  phone: +55 71 999232872
   social_networks:
     - network: LinkedIn
-      username: gojnimer
-  headline: Senior Software Engineer
-  summary: Full-stack software engineer with over 7 years of experience in scalable web development. Specialized in Micro Frontend architecture and modern React ecosystem (Next.js, Remix, Astro), with strong experience in TypeScript, Node.js, and Angular. Possess solid knowledge in DevOps and infrastructure (Kubernetes, Docker, CI/CD), maintaining personal homelab for 3 years. Track record of leading standardization initiatives, performance optimization, and legacy systems modernization.
+      username: brenocidade
+    - network: GitHub
+      username: BrenoCidade
+  headline: Back-End Developer
+  summary: Back-end developer passionate about technology and innovation. I have a solid foundation in software development, with a focus on back-end and comprehensive knowledge in front-end. Always seeking to improve my skills, I am committed to delivering robust and scalable solutions, maintaining quality and efficiency as a priority.
   sections:
     Experience:
-      - company: Hospital Israelita Albert Einstein
-        position: Senior Software Engineer
-        start_date: 2021-08
+      - company: Elastic Code
+        position: Full Stack Developer
+        location: Remote
+        start_date: 2025-02
         end_date: present
         highlights:
-          - Implemented dynamic medical forms framework, consolidating multiple legacy projects into a single configurable platform
-          - Standardized and modernized Micro Frontends (MFE) architecture, improving scalability and maintainability of internal systems
-          - Developed and maintained design system in React, ensuring visual consistency and component reusability across the platform
-          - Integrated electronic health record services and medical systems, ensuring real-time data exchange
+          - Developed multi-tenant solutions with integrations to Messenger, Instagram, and WhatsApp for lead distribution, scheduling, and automation
+          - Implemented integrations with external APIs including Typebot and Meta for process automation
+          - Worked with AWS services (S3, Lambda) and integration with Azure Transcribe for transcription and automated responses
+          - Used diverse technology stack including React, Next.js, NestJS, C#/.NET, and Python
+          - Managed relational and non-relational databases ensuring performance and scalability
 
-      - company: Bradesco
-        position: Senior Software Engineer
-        start_date: 2020-06
-        end_date: 2021-08
+      - company: Compass UOL
+        position: Development Intern
+        location: Remote
+        start_date: 2024-03
+        end_date: 2024-09
         highlights:
-          - Led the Notifications area of the main mobile app, developing critical communication features for millions of users
-          - Utilized Angular and React Native in MFE architecture, ensuring precision and agility in transactional notifications and fraud alerts
-          - Developed authorization and notification configuration system, improving usability and user control
+          - Developed back-end applications using NodeJS and NestJS with focus on scalable architecture
+          - Worked with PostgreSQL and DynamoDB databases, implementing efficient storage solutions
+          - Gained hands-on experience with AWS services, including S3 and Lambda, for data processing and storage
+          - Participated in collaborative projects applying agile methodologies and development best practices
 
-      - company: Foursys
-        position: Frontend Developer
-        location: São Paulo, Brazil
-        start_date: 2020-02
-        end_date: 2020-06
+      - company: Policlinica ACCL
+        position: IT Support
+        location: Salvador, Brazil
+        start_date: 2021-12
+        end_date: 2022-09
         highlights:
-          - Development of web applications with React and TypeScript for corporate clients
-          - Participation in legacy interface modernization projects
-
-      - company: Fullware Tecnologia De Sistemas
-        position: Mobile Developer
-        start_date: 2018-06
-        end_date: 2020-02
-        highlights:
-          - Development of mobile and web applications using C#, .NET Core, and Xamarin Forms
-          - Implementation of CRM systems that optimized sales and customer service processes
+          - Assisted in maintaining systems and MySQL database, ensuring data integrity and availability
+          - Provided technical support solving hardware and software issues
+          - Contributed to the efficiency of the company's technology operations through proactive support
 
     Education:
-      - institution: FIAP
-        area: Information Systems
-        degree: Bachelor's Degree
-        start_date: 2020
-        end_date: 2025
+      - institution: Unifacs
+        area: Systems Analysis and Development
+        degree: Technologist
+        start_date: 2024-01
+        end_date: 2026-06
+        highlights:
+          - Training in planning, development, and maintenance of computer systems
+          - Requirements analysis, solution modeling, programming, and databases
+          - Technology integration for creating efficient technological solutions
+
+    Courses and Certifications:
+      - label: AWS Certified Cloud Practitioner
+        details: Official AWS certification validating fundamental knowledge about AWS cloud, including services, security, architecture, and pricing
+      - label: Learn Amazon S3, CloudFront CDN and SnowBall
+        details: Storage and content delivery on AWS, using Amazon S3 for scalable storage, CloudFront CDN configuration for global distribution and static website hosting
+      - label: Learn to Create Virtual Servers with EC2 on Amazon AWS
+        details: Creation and management of Linux and Windows Server 2019 virtual servers, instance configuration, scalability, and cloud cost optimization
 
     Skills:
-      - label: Core Competencies
-        details: JavaScript, TypeScript, React.js, Node.js, Full-Stack Development
-      - label: Frontend Frameworks
-        details: React, Next.js, Remix, Astro, Angular
-      - label: Architecture & Infrastructure
-        details: Kubernetes, Docker, CI/CD
-      - label: Backend
-        details: Node.js, C#, .NET Core, BaaS, Event-Driven Architecture
-      - label: AI & Methodologies
-        details: Agentic Development, Prompt Engineering, TDD, Spec-Oriented Development
-      - label: Mobile
-        details: React Native, Xamarin Forms
+      - label: Programming Languages
+        details: TypeScript, JavaScript, Python, C#, Java
+      - label: Frameworks and Libraries
+        details: Node.js, NestJS, React, Next.js, .NET, Spring Boot
+      - label: Databases
+        details: MySQL, PostgreSQL, DynamoDB
+      - label: Cloud and DevOps
+        details: AWS (S3, Lambda, EC2, CloudFront), Git, GitHub, Scrum
+      - label: Interpersonal Skills
+        details: Teamwork, Good interpersonal relationships, Microsoft Excel, Microsoft Word
 
     Languages:
       - label: Portuguese
         details: Native
       - label: English
-        details: Advanced
+        details: B2 (Upper Intermediate)
 design:
   theme: engineeringclassic
 locale:
-  language: english
+  language: en

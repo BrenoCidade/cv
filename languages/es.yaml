@@ -1,78 +1,87 @@
 cv:
-  name: Guilherme Nimer Gojlevicius
-  location: São Paulo, Brasil
-  email: gojnimer@gmail.com
-  phone: +55 11 948659453
+  name: Breno Cidade
+  location: Salvador, Brasil
+  email: brenocidadedev@gmail.com
+  phone: +55 71 999232872
   social_networks:
     - network: LinkedIn
-      username: gojnimer
-  headline: Ingeniero de Software Senior
-  summary: Ingeniero de software full-stack con más de 7 años de experiencia en desarrollo web escalable. Especializado en arquitectura de Micro Frontends y ecosistema React moderno (Next.js, Remix, Astro), con amplia experiencia en TypeScript, Node.js y Angular. Poseo conocimiento sólido en DevOps e infraestructura (Kubernetes, Docker, CI/CD), manteniendo homelab personal durante 3 años. Historial de liderazgo en iniciativas de estandarización, optimización de rendimiento y modernización de sistemas legacy.
+      username: brenocidade
+    - network: GitHub
+      username: BrenoCidade
+  headline: Desarrollador Back-End
+  summary: Desarrollador Back-end apasionado por la tecnología y la innovación. Tengo una sólida base en desarrollo de software, con enfoque en back-end y conocimientos amplios en front-end. Siempre buscando mejorar mis habilidades, estoy comprometido con la entrega de soluciones robustas y escalables, manteniendo la calidad y eficiencia como prioridad.
   sections:
     Experiencia:
-      - company: Hospital Israelita Albert Einstein
-        position: Ingeniero de Software Senior
-        start_date: 2021-08
+      - company: Elastic Code
+        position: Desarrollador Full Stack
+        location: Remoto
+        start_date: 2025-02
         end_date: present
         highlights:
-          - Implementé framework de formularios médicos dinámicos, consolidando diversos proyectos legacy en una única plataforma configurable
-          - Estandaricé y modernicé la arquitectura de Micro Frontends (MFE), mejorando escalabilidad y mantenibilidad de los sistemas internos
-          - Desarrollé y mantuve design system en React, garantizando consistencia visual y reutilización de componentes en toda la plataforma
-          - Integré servicios de historia clínica electrónica y sistemas médicos, garantizando intercambio de datos en tiempo real
+          - Desarrollé soluciones multi-tenant con integraciones a Messenger, Instagram y WhatsApp para distribución de leads, programación y automatizaciones
+          - Implementé integraciones con APIs externas incluyendo Typebot y Meta para automatización de procesos
+          - Trabajé con servicios AWS (S3, Lambda) e integración con Azure Transcribe para transcripción y respuestas automatizadas
+          - Utilicé stack tecnológico diversificado incluyendo React, Next.js, NestJS, C#/.NET y Python
+          - Gestioné bases de datos relacionales y no relacionales garantizando rendimiento y escalabilidad
 
-      - company: Bradesco
-        position: Ingeniero de Software Senior
-        start_date: 2020-06
-        end_date: 2021-08
+      - company: Compass UOL
+        position: Pasante de Desarrollo
+        location: Remoto
+        start_date: 2024-03
+        end_date: 2024-09
         highlights:
-          - Lideré el área de Notificaciones de la app móvil principal, desarrollando funcionalidades críticas de comunicación con millones de usuarios
-          - Utilicé Angular y React Native en arquitectura MFE, garantizando precisión y agilidad en las notificaciones transaccionales y alertas de fraude
-          - Desarrollé sistema de autorización y configuración de notificaciones, mejorando usabilidad y control del usuario
+          - Desarrollé aplicaciones back-end utilizando NodeJS y NestJS con enfoque en arquitectura escalable
+          - Trabajé con bases de datos PostgreSQL y DynamoDB, implementando soluciones eficientes de almacenamiento
+          - Adquirí experiencia práctica con servicios AWS, incluyendo S3 y Lambda, para procesamiento y almacenamiento de datos
+          - Participé en proyectos colaborativos aplicando metodologías ágiles y buenas prácticas de desarrollo
 
-      - company: Foursys
-        position: Desarrollador Frontend
-        location: São Paulo, Brasil
-        start_date: 2020-02
-        end_date: 2020-06
+      - company: Policlinica ACCL
+        position: Soporte de T.I
+        location: Salvador, Brasil
+        start_date: 2021-12
+        end_date: 2022-09
         highlights:
-          - Desarrollo de aplicaciones web con React y TypeScript para clientes corporativos
-          - Participación en proyectos de modernización de interfaces legacy
-
-      - company: Fullware Tecnologia De Sistemas
-        position: Desarrollador Mobile
-        start_date: 2018-06
-        end_date: 2020-02
-        highlights:
-          - Desarrollo de aplicaciones móviles y web utilizando C#, .NET Core y Xamarin Forms
-          - Implementación de sistemas CRM que optimizaron procesos de ventas y atención al cliente
+          - Auxilié en el mantenimiento de sistemas y base de datos MySQL, garantizando integridad y disponibilidad de los datos
+          - Presté soporte técnico resolviendo problemas de hardware y software
+          - Contribuí a la eficiencia de las operaciones de tecnología de la empresa a través de soporte proactivo
 
     Educación:
-      - institution: FIAP
-        area: Sistemas de Información
-        degree: Licenciatura
-        start_date: 2020
-        end_date: 2025
+      - institution: Unifacs
+        area: Análisis y Desarrollo de Sistemas
+        degree: Tecnólogo
+        start_date: 2024-01
+        end_date: 2026-06
+        highlights:
+          - Formación en planificación, desarrollo y mantenimiento de sistemas computacionales
+          - Análisis de requisitos, modelado de soluciones, programación y base de datos
+          - Integración de tecnologías para la creación de soluciones tecnológicas eficientes
+
+    Cursos y Certificaciones:
+      - label: AWS Certified Cloud Practitioner
+        details: Certificación oficial AWS que valida conocimientos fundamentales sobre la nube AWS, incluyendo servicios, seguridad, arquitectura y precios
+      - label: Aprenda Amazon S3, CloudFront CDN y SnowBall
+        details: Almacenamiento y entrega de contenido en AWS, uso de Amazon S3 para almacenamiento escalable, configuración de CloudFront CDN para distribución global y hospedaje de sitios web estáticos
+      - label: Aprenda a Crear Servidores Virtuales con EC2 en Amazon AWS
+        details: Creación y gestión de servidores virtuales Linux y Windows Server 2019, configuración de instancias, escalabilidad y optimización de costos en la nube
 
     Habilidades:
-      - label: Competencias Principales
-        details: JavaScript, TypeScript, React.js, Node.js, Desarrollo Full-Stack
-      - label: Frameworks Frontend
-        details: React, Next.js, Remix, Astro, Angular
-      - label: Arquitectura e Infraestructura
-        details: Kubernetes, Docker, CI/CD
-      - label: Backend
-        details: Node.js, C#, .NET Core, BaaS, Arquitectura Orientada a Eventos
-      - label: AI y Metodologías
-        details: Agentic Development, Prompt Engineering, TDD, Spec-Oriented Development
-      - label: Mobile
-        details: React Native, Xamarin Forms
+      - label: Lenguajes de Programación
+        details: TypeScript, JavaScript, Python, C#, Java
+      - label: Frameworks y Bibliotecas
+        details: Node.js, NestJS, React, Next.js, .NET, Spring Boot
+      - label: Bases de Datos
+        details: MySQL, PostgreSQL, DynamoDB
+      - label: Cloud y DevOps
+        details: AWS (S3, Lambda, EC2, CloudFront), Git, GitHub, Scrum
+      - label: Competencias Interpersonales
+        details: Trabajo en equipo, Buena relación interpersonal, Microsoft Excel, Microsoft Word
 
     Idiomas:
       - label: Portugués
         details: Nativo
       - label: Inglés
-        details: Avanzado
+        details: B2 (Intermedio Avanzado)
 design:
   theme: engineeringclassic
 locale:
-  language: spanish
+  language: es
