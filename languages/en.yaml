@@ -31,8 +31,7 @@ cv:
         highlights:
           - "Serverless API development using AWS Lambda and API Gateway with Node.js"
           - "Modeling and implementation of NoSQL databases (DynamoDB) for high availability"
-          - "Application of Clean Code practices and hexagonal architecture in agile projects (Scrum)"
-
+          - "Collaboration in projects using agile methodologies (Scrum)"
     Projects & Awards:
       - name: Winner of CARF Hackathon 2025 (1st Place) - PreviFlow
         location: Salvador
@@ -63,9 +62,9 @@ cv:
           - "Focus on Software Engineering and Distributed Systems Architecture"
 
     Courses & Certifications:
-      - label: AWS Certified Cloud Practitioner
+      - label: AWS Certified Cloud Practitioner (AWS)
         details: Official AWS Certification (Cloud concepts, security, and architecture)
-      - label: AWS Specialization (Udemy/Alura)
+      - label: AWS Specialization (Udemy)
         details: Practical focus on EC2, S3, CloudFront, and Serverless Computing
 
 design:
