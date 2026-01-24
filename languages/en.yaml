@@ -8,8 +8,8 @@ cv:
       username: brenocidade
     - network: GitHub
       username: BrenoCidade
-  headline: Back-End Developer
-  summary: Back-end developer passionate about technology and innovation. I have a solid foundation in software development, with a focus on back-end and comprehensive knowledge in front-end. Always seeking to improve my skills, I am committed to delivering robust and scalable solutions, maintaining quality and efficiency as a priority.
+  headline: Full Stack Developer | Node.js & .NET
+  summary: Full Stack Developer with strong experience in Node.js (NestJS) and .NET (C#) ecosystems. Experience in software architecture (Clean Architecture, DDD), Multi-tenant systems, and complex integrations (Meta API). Hackathon winner focused on innovation and delivering scalable solutions.
   sections:
     Experience:
       - company: Elastic Code
@@ -18,69 +18,56 @@ cv:
         start_date: 2025-02
         end_date: present
         highlights:
-          - Developed multi-tenant solutions with integrations to Messenger, Instagram, and WhatsApp for lead distribution, scheduling, and automation
-          - Implemented integrations with external APIs including Typebot and Meta for process automation
-          - Worked with AWS services (S3, Lambda) and integration with Azure Transcribe for transcription and automated responses
-          - Used diverse technology stack including React, Next.js, NestJS, C#/.NET, and Python
-          - Managed relational and non-relational databases ensuring performance and scalability
+          - "Role in Project A (Multi-tenant): SaaS platform development with NestJS, React, and PostgreSQL, managing data isolation and performance"
+          - "Implementation of Omnichannel communication module integrating Instagram, WhatsApp, and Messenger via Meta API"
+          - "Role in Project B (Current): Corporate solution development using C#/.NET with Clean Architecture and DDD (Domain-Driven Design)"
+          - "Advanced Front-end Engineering in the .NET project, using React with TanStack Router for route management and type-safe state"
 
       - company: Compass UOL
-        position: Development Intern
+        position: Software Development Intern
         location: Remote
         start_date: 2025-03
         end_date: 2025-09
         highlights:
-          - Developed back-end applications using NodeJS and NestJS with focus on scalable architecture
-          - Worked with PostgreSQL and DynamoDB databases, implementing efficient storage solutions
-          - Gained hands-on experience with AWS services, including S3 and Lambda, for data processing and storage
-          - Participated in collaborative projects applying agile methodologies and development best practices
+          - "Serverless API development using AWS Lambda and API Gateway with Node.js"
+          - "Modeling and implementation of NoSQL databases (DynamoDB) for high availability"
+          - "Application of Clean Code practices and hexagonal architecture in agile projects (Scrum)"
 
-      - company: Policlinica ACCL
-        position: IT Support
-        location: Salvador, Brazil
-        start_date: 2021-12
-        end_date: 2022-09
+    Projects & Awards:
+      - name: Winner of CARF Hackathon 2025 (1st Place) - PreviFlow
+        location: Salvador
+        start_date: 2025
         highlights:
-          - Assisted in maintaining systems and MySQL database, ensuring data integrity and availability
-          - Provided technical support solving hardware and software issues
-          - Contributed to the efficiency of the company's technology operations through proactive support
+          - "Machine Learning solution for predicting fiscal administrative processes"
+          - "Full Stack role (Python/FastAPI and React) and implementation of predictive models"
+
+    Skills:
+      - label: Languages
+        details: TypeScript, C#, JavaScript, Python, Java
+      - label: Backend & Architecture
+        details: NestJS, .NET (Clean Arch, DDD), Node.js, Spring Boot
+      - label: Frontend
+        details: React, Next.js, TanStack Router, Tailwind CSS
+      - label: Cloud & DevOps
+        details: AWS (S3, Lambda, EC2), CI/CD (GitHub Actions), Docker, Git
+      - label: Databases
+        details: PostgreSQL, MySQL, DynamoDB, MongoDB
 
     Education:
       - institution: Unifacs
-        area: Systems Analysis and Development
-        degree: Technologist
+        area: Analysis and Systems Development
+        degree: Associate Degree
         start_date: 2024-01
         end_date: 2026-06
         highlights:
-          - Training in planning, development, and maintenance of computer systems
-          - Requirements analysis, solution modeling, programming, and databases
-          - Technology integration for creating efficient technological solutions
+          - "Focus on Software Engineering and Distributed Systems Architecture"
 
-    Courses and Certifications:
+    Courses & Certifications:
       - label: AWS Certified Cloud Practitioner
-        details: Official AWS certification validating fundamental knowledge about AWS cloud, including services, security, architecture, and pricing
-      - label: Learn Amazon S3, CloudFront CDN and SnowBall
-        details: Storage and content delivery on AWS, using Amazon S3 for scalable storage, CloudFront CDN configuration for global distribution and static website hosting
-      - label: Learn to Create Virtual Servers with EC2 on Amazon AWS
-        details: Creation and management of Linux and Windows Server 2019 virtual servers, instance configuration, scalability, and cloud cost optimization
+        details: Official AWS Certification (Cloud concepts, security, and architecture)
+      - label: AWS Specialization (Udemy/Alura)
+        details: Practical focus on EC2, S3, CloudFront, and Serverless Computing
 
-    Skills:
-      - label: Programming Languages
-        details: TypeScript, JavaScript, Python, C#, Java
-      - label: Frameworks and Libraries
-        details: Node.js, NestJS, React, Next.js, .NET, Spring Boot
-      - label: Databases
-        details: MySQL, PostgreSQL, DynamoDB
-      - label: Cloud and DevOps
-        details: AWS (S3, Lambda, EC2, CloudFront), Git, GitHub, Scrum
-      - label: Interpersonal Skills
-        details: Teamwork, Good interpersonal relationships, Microsoft Excel, Microsoft Word
-
-    Languages:
-      - label: Portuguese
-        details: Native
-      - label: English
-        details: B2 (Upper Intermediate)
 design:
   theme: engineeringclassic
 locale:

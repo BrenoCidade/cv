@@ -8,8 +8,8 @@ cv:
       username: brenocidade
     - network: GitHub
       username: BrenoCidade
-  headline: Desenvolvedor Back-End
-  summary: Desenvolvedor Back-end apaixonado por tecnologia e inovação. Tenho uma sólida base em desenvolvimento de software, com foco em back-end e conhecimentos abrangentes em front-end. Sempre em busca de aprimorar minhas habilidades, estou comprometido com a entrega de soluções robustas e escaláveis, mantendo a qualidade e eficiência como prioridade.
+  headline: Desenvolvedor Full Stack | Node.js & .NET
+  summary: Desenvolvedor Full Stack com forte atuação em ecossistemas Node.js (NestJS) e .NET (C#). Experiência em arquitetura de software (Clean Architecture, DDD), sistemas Multi-tenant e integrações complexas (Meta API). Vencedor de Hackathon com foco em inovação e entrega de soluções escaláveis.
   sections:
     Experiência:
       - company: Elastic Code
@@ -18,11 +18,10 @@ cv:
         start_date: 2025-02
         end_date: present
         highlights:
-          - Desenvolvi soluções multi-tenant com integrações ao Messenger, Instagram e WhatsApp para distribuição de leads, agendamentos e automações
-          - Implementei integrações com APIs externas incluindo Typebot e Meta para automação de processos
-          - Trabalhei com serviços AWS (S3, Lambda) e integração com Azure Transcribe para transcrição e respostas automatizadas
-          - Utilizei stack tecnológica diversificada incluindo React, Next.js, NestJS, C#/.NET e Python
-          - Gerenciei bancos de dados relacionais e não relacionais garantindo performance e escalabilidade
+          - "Atuação no Projeto A (Multi-tenant): Desenvolvimento de plataforma SaaS com NestJS, React e PostgreSQL, gerenciando isolamento de dados e performance"
+          - "Implementação de módulo de comunicação Omnichannel integrando Instagram, WhatsApp e Messenger via Meta API"
+          - "Atuação no Projeto B (Atual): Desenvolvimento de solução corporativa utilizando C#/.NET com Clean Architecture e DDD (Domain-Driven Design)"
+          - "Engenharia de Front-end avançada no projeto .NET, utilizando React com TanStack Router para gerenciamento de rotas e estado type-safe"
 
       - company: Compass UOL
         position: Estagiário de Desenvolvimento
@@ -30,20 +29,29 @@ cv:
         start_date: 2025-03
         end_date: 2025-09
         highlights:
-          - Desenvolvi aplicações back-end utilizando NodeJS e NestJS com foco em arquitetura escalável
-          - Trabalhei com bancos de dados PostgreSQL e DynamoDB, implementando soluções eficientes de armazenamento
-          - Adquiri experiência prática com serviços AWS, incluindo S3 e Lambda, para processamento e armazenamento de dados
-          - Participei de projetos colaborativos aplicando metodologias ágeis e boas práticas de desenvolvimento
+          - Desenvolvimento de APIs serverless utilizando AWS Lambda e API Gateway com Node.js
+          - Modelagem e implementação de bancos de dados NoSQL (DynamoDB) para alta disponibilidade
+          - Aplicação de práticas de Clean Code e arquitetura hexagonal em projetos ágeis (Scrum)
 
-      - company: Policlinica ACCL
-        position: Suporte de T.I
-        location: Salvador, Brasil
-        start_date: 2021-12
-        end_date: 2022-09
+    Projetos e Premiações:
+      - name: Vencedor do Hackathon CARF 2025 (1º Lugar) - PreviFlow
+        location: Salvador
+        start_date: 2025
         highlights:
-          - Auxiliei na manutenção de sistemas e banco de dados MySQL, garantindo integridade e disponibilidade dos dados
-          - Prestei suporte técnico resolvendo problemas de hardware e software
-          - Contribuí para a eficiência das operações de tecnologia da empresa através de suporte proativo
+          - Solução de Machine Learning para predição de processos administrativos fiscais
+          - Atuação Full Stack (Python/FastAPI e React) e implementação de modelos preditivos
+
+    Habilidades:
+      - label: Linguagens
+        details: TypeScript, C#, JavaScript, Python, Java
+      - label: Backend & Arquitetura
+        details: NestJS, .NET (Clean Arch, DDD), Node.js, Spring Boot
+      - label: Frontend
+        details: React, Next.js, TanStack Router, Tailwind CSS
+      - label: Cloud e DevOps
+        details: AWS (S3, Lambda, EC2), CI/CD (GitHub Actions), Docker, Git
+      - label: Bancos de Dados
+        details: PostgreSQL, MySQL, DynamoDB, MongoDB
 
     Educação:
       - institution: Unifacs
@@ -52,37 +60,15 @@ cv:
         start_date: 2024-01
         end_date: 2026-06
         highlights:
-          - Formação em planejamento, desenvolvimento e manutenção de sistemas computacionais
-          - Análise de requisitos, modelagem de soluções, programação e banco de dados
-          - Integração de tecnologias para criação de soluções tecnológicas eficientes
+          - Foco em Engenharia de Software e Arquitetura de Sistemas Distribuídos
 
     Cursos e Certificações:
       - label: AWS Certified Cloud Practitioner
-        details: Certificação oficial AWS que valida conhecimentos fundamentais sobre a nuvem AWS, incluindo serviços, segurança, arquitetura e precificação
-      - label: Aprenda Amazon S3, CloudFront CDN e SnowBall
-        details: Armazenamento e entrega de conteúdo na AWS, uso do Amazon S3 para armazenamento escalável, configuração do CloudFront CDN para distribuição global e hospedagem de websites estáticos
-      - label: Aprenda a Criar Servidores Virtuais com EC2 na Amazon AWS
-        details: Criação e gerenciamento de servidores virtuais Linux e Windows Server 2019, configuração de instâncias, escalabilidade e otimização de custos na nuvem
+        details: Certificação Oficial AWS (Conceitos de nuvem, segurança e arquitetura)
+      - label: Especialização em AWS (Udemy/Alura)
+        details: Foco prático em EC2, S3, CloudFront e Serverless Computing
 
-    Habilidades:
-      - label: Linguagens de Programação
-        details: TypeScript, JavaScript, Python, C#, Java
-      - label: Frameworks e Bibliotecas
-        details: Node.js, NestJS, React, Next.js, .NET, Spring Boot
-      - label: Bancos de Dados
-        details: MySQL, PostgreSQL, DynamoDB
-      - label: Cloud e DevOps
-        details: AWS (S3, Lambda, EC2, CloudFront), Git, GitHub, Scrum
-      - label: Competências Interpessoais
-        details: Trabalho em equipe, Bom relacionamento interpessoal, Microsoft Excel, Microsoft Word
-
-    Idiomas:
-      - label: Português
-        details: Nativo
-      - label: Inglês
-        details: B2 (Intermediário Avançado)
 design:
   theme: engineeringclassic
 locale:
   language: portuguese
-#
