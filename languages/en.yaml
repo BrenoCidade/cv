@@ -27,8 +27,8 @@ cv:
       - company: Compass UOL
         position: Development Intern
         location: Remote
-        start_date: 2024-03
-        end_date: 2024-09
+        start_date: 2025-03
+        end_date: 2025-09
         highlights:
           - Developed back-end applications using NodeJS and NestJS with focus on scalable architecture
           - Worked with PostgreSQL and DynamoDB databases, implementing efficient storage solutions

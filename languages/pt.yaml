@@ -27,8 +27,8 @@ cv:
       - company: Compass UOL
         position: Estagiário de Desenvolvimento
         location: Remoto
-        start_date: 2024-03
-        end_date: 2024-09
+        start_date: 2025-03
+        end_date: 2025-09
         highlights:
           - Desenvolvi aplicações back-end utilizando NodeJS e NestJS com foco em arquitetura escalável
           - Trabalhei com bancos de dados PostgreSQL e DynamoDB, implementando soluções eficientes de armazenamento

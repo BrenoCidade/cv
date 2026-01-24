@@ -27,8 +27,8 @@ cv:
       - company: Compass UOL
         position: Pasante de Desarrollo
         location: Remoto
-        start_date: 2024-03
-        end_date: 2024-09
+        start_date: 2025-03
+        end_date: 2025-09
         highlights:
           - Desarrollé aplicaciones back-end utilizando NodeJS y NestJS con enfoque en arquitectura escalable
           - Trabajé con bases de datos PostgreSQL y DynamoDB, implementando soluciones eficientes de almacenamiento
