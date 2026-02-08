@@ -8,12 +8,12 @@ cv:
       username: brenocidade
     - network: GitHub
       username: BrenoCidade
-  headline: Desenvolvedor Full Stack | Node.js & .NET
-  summary: Desenvolvedor Full Stack com forte atuação em ecossistemas Node.js (NestJS) e .NET (C#). Experiência em arquitetura de software (Clean Architecture, DDD), sistemas Multi-tenant e integrações complexas (Meta API). Vencedor de Hackathon com foco em inovação e entrega de soluções escaláveis.
+  headline: Desenvolvedor Back-end | Node.js
+  summary: Desenvolvedor Back-end com forte atuação em ecossistemas Node.js (NestJS). Experiência em arquitetura de software (Clean Architecture, DDD), sistemas Multi-tenant e integrações (Meta API). Vencedor de Hackathon com foco em inovação e entrega de soluções escaláveis.
   sections:
     Experiência:
       - company: Elastic Code
-        position: Desenvolvedor Full Stack
+        position: Desenvolvedor Back-end
         location: Remoto
         start_date: 2025-02
         end_date: present
@@ -21,7 +21,7 @@ cv:
           - "Atuação no Projeto A (Multi-tenant): Desenvolvimento de plataforma SaaS com NestJS, React e PostgreSQL, gerenciando isolamento de dados e performance"
           - "Implementação de módulo de comunicação Omnichannel integrando Instagram, WhatsApp e Messenger via Meta API"
           - "Atuação no Projeto B (Atual): Desenvolvimento de solução corporativa utilizando C#/.NET com Clean Architecture e DDD (Domain-Driven Design)"
-          - "Engenharia de Front-end avançada no projeto .NET, utilizando React com TanStack Router para gerenciamento de rotas e estado type-safe"
+          - "Engenharia de Back-end avançada no projeto .NET, utilizando React com TanStack Router para gerenciamento de rotas e estado type-safe"
 
       - company: Compass UOL
         position: Estagiário de Desenvolvimento
@@ -43,7 +43,7 @@ cv:
 
     Habilidades:
       - label: Linguagens
-        details: TypeScript, C#, JavaScript, Python, Java
+        details: JavaScript, C#, Python, Java
       - label: Backend & Arquitetura
         details: NestJS, .NET (Clean Arch, DDD), Node.js, Spring Boot
       - label: Frontend
