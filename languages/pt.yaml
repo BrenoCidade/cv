@@ -8,20 +8,21 @@ cv:
       username: brenocidade
     - network: GitHub
       username: BrenoCidade
-  headline: Desenvolvedor Back-end | Node.js
-  summary: Desenvolvedor Back-end com forte atuação em ecossistemas Node.js (NestJS). Experiência em arquitetura de software (Clean Architecture, DDD), sistemas Multi-tenant e integrações (Meta API). Vencedor de Hackathon com foco em inovação e entrega de soluções escaláveis.
+  headline: Desenvolvedor Full Stack | Node.js & .NET
+  summary: Desenvolvedor Full Stack com experiência em Node.js (NestJS), .NET (C#) e Python. Já atuei em sistemas multi-tenant, integrações com APIs externas (Meta) e arquitetura em Clean Architecture/DDD. Venci o Hackathon CARF 2025 com uma solução de Machine Learning para processos fiscais.
   sections:
     Experiência:
       - company: Elastic Code
-        position: Desenvolvedor Back-end
+        position: Desenvolvedor Full Stack
         location: Remoto
         start_date: 2025-02
         end_date: present
         highlights:
-          - "Atuação no Projeto A (Multi-tenant): Desenvolvimento de plataforma SaaS com NestJS, React e PostgreSQL, gerenciando isolamento de dados e performance"
+          - "Atuação no Projeto A (Multi-tenant): desenvolvimento de plataforma SaaS com NestJS, React e PostgreSQL, hoje em uso por 4 clientes corporativos que somam mais de 20 usuários finais"
           - "Implementação de módulo de comunicação Omnichannel integrando Instagram, WhatsApp e Messenger via Meta API"
-          - "Atuação no Projeto B (Atual): Desenvolvimento de solução corporativa utilizando C#/.NET com Clean Architecture e DDD (Domain-Driven Design)"
-          - "Engenharia de Back-end avançada no projeto .NET, utilizando React com TanStack Router para gerenciamento de rotas e estado type-safe"
+          - "Manutenção e correção de bugs no gateway de mensagens em Python do Projeto A, com diagnóstico de cenários de erro específicos"
+          - "Atuação no Projeto B (Atual): desenvolvimento de solução corporativa utilizando C#/.NET com Clean Architecture e DDD"
+          - "Engenharia Full Stack no projeto .NET, com React e TanStack Router para gerenciamento de rotas e estado type-safe"
 
       - company: Compass UOL
         position: Estagiário de Desenvolvimento
@@ -58,15 +59,13 @@ cv:
         area: Análise e Desenvolvimento de Sistemas
         degree: Tecnólogo
         start_date: 2024-01
-        end_date: 2026-06
+        end_date: 2026-07
         highlights:
           - Foco em Engenharia de Software e Arquitetura de Sistemas Distribuídos
 
     Cursos e Certificações:
       - label: AWS Certified Cloud Practitioner (AWS)
         details: Certificação Oficial AWS (Conceitos de nuvem, segurança e arquitetura)
-      - label: Especialização em AWS (Udemy)
-        details: Foco prático em EC2, S3, CloudFront e Serverless Computing
 
 design:
   theme: engineeringclassic

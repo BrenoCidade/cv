@@ -9,7 +9,7 @@ cv:
     - network: GitHub
       username: BrenoCidade
   headline: Desarrollador Full Stack | Node.js & .NET
-  summary: Desarrollador Full Stack con sólida experiencia en ecosistemas Node.js (NestJS) y .NET (C#). Experiencia en arquitectura de software (Clean Architecture, DDD), sistemas Multi-tenant e integraciones complejas (Meta API). Ganador de Hackathon enfocado en innovación y entrega de soluciones escalables.
+  summary: Desarrollador Full Stack con experiencia en Node.js (NestJS), .NET (C#) y Python. He trabajado en sistemas multi-tenant, integraciones con APIs externas (Meta) y Clean Architecture/DDD. Ganador del Hackathon CARF 2025 con una solución de Machine Learning para procesos administrativos fiscales.
   sections:
     Experiencia:
       - company: Elastic Code
@@ -18,10 +18,11 @@ cv:
         start_date: 2025-02
         end_date: present
         highlights:
-          - "Rol en Proyecto A (Multi-tenant): Desarrollo de plataforma SaaS con NestJS, React y PostgreSQL, gestionando aislamiento de datos y rendimiento"
+          - "Rol en Proyecto A (Multi-tenant): desarrollo de plataforma SaaS con NestJS, React y PostgreSQL, actualmente en uso por 4 clientes corporativos que suman más de 20 usuarios finales"
           - "Implementación de módulo de comunicación Omnichannel integrando Instagram, WhatsApp y Messenger vía Meta API"
-          - "Rol en Proyecto B (Actual): Desarrollo de solución corporativa utilizando C#/.NET con Clean Architecture y DDD (Domain-Driven Design)"
-          - "Ingeniería de Front-end avanzada en el proyecto .NET, utilizando React con TanStack Router para gestión de rutas y estado type-safe"
+          - "Mantenimiento y corrección de errores en el gateway de mensajería en Python del Proyecto A, con diagnóstico de escenarios de error específicos"
+          - "Rol en Proyecto B (Actual): desarrollo de solución corporativa utilizando C#/.NET con Clean Architecture y DDD"
+          - "Ingeniería Full Stack en el proyecto .NET, con React y TanStack Router para gestión de rutas y estado type-safe"
 
       - company: Compass UOL
         position: Pasante de Desarrollo de Software
@@ -58,15 +59,13 @@ cv:
         area: Análisis y Desarrollo de Sistemas
         degree: Tecnólogo
         start_date: 2024-01
-        end_date: 2026-06
+        end_date: 2026-07
         highlights:
           - "Enfoque en Ingeniería de Software y Arquitectura de Sistemas Distribuidos"
 
     Cursos y Certificaciones:
       - label: AWS Certified Cloud Practitioner (AWS)
         details: Certificación Oficial AWS (Conceptos de nube, seguridad y arquitectura)
-      - label: Especialización en AWS (Udemy)
-        details: Enfoque práctico en EC2, S3, CloudFront y Serverless Computing
 
 design:
   theme: engineeringclassic

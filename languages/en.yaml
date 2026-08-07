@@ -9,7 +9,7 @@ cv:
     - network: GitHub
       username: BrenoCidade
   headline: Full Stack Developer | Node.js & .NET
-  summary: Full Stack Developer with strong experience in Node.js (NestJS) and .NET (C#) ecosystems. Experience in software architecture (Clean Architecture, DDD), Multi-tenant systems, and complex integrations (Meta API). Hackathon winner focused on innovation and delivering scalable solutions.
+  summary: Full Stack Developer with experience in Node.js (NestJS), .NET (C#), and Python. I've worked on multi-tenant systems, integrations with external APIs (Meta), and Clean Architecture/DDD. Winner of the CARF 2025 Hackathon with a Machine Learning solution for fiscal administrative processes.
   sections:
     Experience:
       - company: Elastic Code
@@ -18,10 +18,11 @@ cv:
         start_date: 2025-02
         end_date: present
         highlights:
-          - "Role in Project A (Multi-tenant): SaaS platform development with NestJS, React, and PostgreSQL, managing data isolation and performance"
+          - "Role in Project A (Multi-tenant): SaaS platform development with NestJS, React, and PostgreSQL, currently used by 4 corporate clients totaling over 20 end users"
           - "Implementation of Omnichannel communication module integrating Instagram, WhatsApp, and Messenger via Meta API"
-          - "Role in Project B (Current): Corporate solution development using C#/.NET with Clean Architecture and DDD (Domain-Driven Design)"
-          - "Advanced Front-end Engineering in the .NET project, using React with TanStack Router for route management and type-safe state"
+          - "Maintenance and bug fixing on Project A's Python messaging gateway, diagnosing specific error scenarios"
+          - "Role in Project B (Current): Corporate solution development using C#/.NET with Clean Architecture and DDD"
+          - "Full Stack engineering on the .NET project, with React and TanStack Router for route management and type-safe state"
 
       - company: Compass UOL
         position: Software Development Intern
@@ -57,15 +58,13 @@ cv:
         area: Analysis and Systems Development
         degree: Associate Degree
         start_date: 2024-01
-        end_date: 2026-06
+        end_date: 2026-07
         highlights:
           - "Focus on Software Engineering and Distributed Systems Architecture"
 
     Courses & Certifications:
       - label: AWS Certified Cloud Practitioner (AWS)
         details: Official AWS Certification (Cloud concepts, security, and architecture)
-      - label: AWS Specialization (Udemy)
-        details: Practical focus on EC2, S3, CloudFront, and Serverless Computing
 
 design:
   theme: engineeringclassic
