@@ -8,7 +8,7 @@ cv:
       username: brenocidade
     - network: GitHub
       username: BrenoCidade
-  headline: Desenvolvedor Full Stack | Node.js & .NET
+  headline: Desenvolvedor Full Stack
   sections:
     Resumo:
       - Desenvolvedor Full Stack com experiência em Node.js (NestJS), .NET (C#) e Python. Já atuei em sistemas multi-tenant, integrações com APIs externas (Meta) e arquitetura em Clean Architecture/DDD. Venci o Hackathon CARF 2025 com uma solução de Machine Learning para processos fiscais.
