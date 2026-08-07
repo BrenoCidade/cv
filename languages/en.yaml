@@ -9,8 +9,10 @@ cv:
     - network: GitHub
       username: BrenoCidade
   headline: Full Stack Developer | Node.js & .NET
-  summary: Full Stack Developer with experience in Node.js (NestJS), .NET (C#), and Python. I've worked on multi-tenant systems, integrations with external APIs (Meta), and Clean Architecture/DDD. Winner of the CARF 2025 Hackathon with a Machine Learning solution for fiscal administrative processes.
   sections:
+    Summary:
+      - "Full Stack Developer with experience in Node.js (NestJS), .NET (C#), and Python. I've worked on multi-tenant systems, integrations with external APIs (Meta), and Clean Architecture/DDD. Winner of the CARF 2025 Hackathon with a Machine Learning solution for fiscal administrative processes."
+
     Experience:
       - company: Elastic Code
         position: Full Stack Developer
